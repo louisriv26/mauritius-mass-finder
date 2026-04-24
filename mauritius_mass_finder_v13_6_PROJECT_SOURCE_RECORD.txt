@@ -1,5 +1,0 @@
-Mauritius Mass Finder v13.6 project-source record.
-Latest recommended production build after expert validation of v13.5.
-Main changes: localised data-status counter, corrected stale version labels, improved five-card stats layout, rebuilt packages.
-Dataset: 383 rows, 47 parishes, 117 sites, 378 Mass rows, 5 other/ambiguous rows.
-Residual improvement: 51 site coordinates missing.
