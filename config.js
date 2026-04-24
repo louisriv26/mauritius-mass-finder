@@ -1,4 +1,4 @@
-// Mauritius Mass Finder v13.6 live bilingual configuration
+// Mauritius Mass Finder v15.1 final checked configuration
 // Leave GOOGLE_SHEET_CSV_URL blank to use data/masses.json.
 // To use Google Sheets: publish the sheet as CSV and paste the published CSV URL below.
 window.MASS_FINDER_CONFIG = {
