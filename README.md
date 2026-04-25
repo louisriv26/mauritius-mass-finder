@@ -1,9 +1,36 @@
-# Mauritius Mass Finder v16.2 — Release-Hardening Edition
+# Mauritius Mass Finder v17.2
 
-Public-facing bilingual Mass Finder for Mauritius.
+Sunday Obligation Release Hardening Edition.
 
-This release hardens v16.1 with stronger update/cache behavior, stop-word tolerant search, accessibility labels, clearer trust wording, and cleaner package hygiene.
+Use this GitHub Pages-ready package for deployment.
 
-Normal Mass schedule updates should be made in `data/masses.json` or `data/masses.csv`. The app keeps an embedded fallback database for offline/resilience.
+Main improvements:
+- Sunday obligation mode includes Sunday Masses and explicit Saturday Vigil Masses.
+- Vigil Masses are clearly marked and shown as Vigil Mass for Sunday / Messe anticipée du dimanche.
+- Near Me clears stale filters even if location access is denied or unavailable.
+- Help and onboarding text re-render correctly when switching EN/FR.
+- Version, manifest, service worker, cache, and validation files updated to v17.2.
 
-Coordinate note: all 117 sites have coordinates. Exact/existing coordinates are used for direct pin navigation; approximate locality-level coordinates are shown with `~` and directions use Google Maps text query to avoid false precision.
+Validated counts:
+- 383 rows
+- 47 parishes
+- 117 sites
+- 378 Mass rows
+- 5 other / ambiguous rows
+- 78 explicit Vigil Mass rows
+
+Files:
+- index.html
+- app.js
+- data/masses.json
+- data/masses.csv
+- fallback-data.js
+- manifest.json
+- manifest.webmanifest
+- sw.js
+- service-worker.js
+- version.json
+- icons/
+- release-validation-v17.2.txt
+- validate-release.js
+- .nojekyll

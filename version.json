@@ -1,15 +1,6 @@
 {
-  "version": "16.2",
-  "release": "release-hardening-edition",
-  "label": "v16.2",
-  "generated_at": "2026-04-25T00:00:00+04:00",
-  "notes": [
-    "Release-hardening edition from v16.1 quality-polish release",
-    "Improved service-worker update flow with waiting-worker activation before reload",
-    "Added stop-word tolerant search for names such as Notre-Dame-de-la-Salette",
-    "Added accessibility labels for search/filter controls and update actions",
-    "Cleaned release package to avoid stale v16.0/v16.1 reports",
-    "Clarified approximate-distance wording",
-    "Preserved full validated 383-row database and GitHub Pages structure"
-  ]
+  "version": "17.2",
+  "name": "Mauritius Mass Finder v17.2 Public Release Hardening Edition",
+  "released": "2026-04-25",
+  "notes": "Public-release hardening for trust, bilingual consistency, mobile usability, update reliability, and Sunday/Vigil clarity. Includes clearer Sunday/Saturday Vigil/Weekday badges, stronger exceptional-event caution, refined Help Center, and regression validation."
 }
