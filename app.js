@@ -1,6 +1,6 @@
 (() => {
 'use strict';
-const APP_VERSION = '15.1';
+const APP_VERSION = '16.2';
 const DAYS = ['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
 const DAY_LABELS = {
   en: {Lundi:'Monday', Mardi:'Tuesday', Mercredi:'Wednesday', Jeudi:'Thursday', Vendredi:'Friday', Samedi:'Saturday', Dimanche:'Sunday'},
@@ -16,16 +16,17 @@ const T = {
     qaNearTitle:'Near me', qaNearText:'Use your location and sort nearby results.',
     qaSundayTitle:'Sunday morning', qaSundayText:'Show Sunday Masses before midday.',
     qaFavTitle:'My Churches', qaFavText:'Open your saved churches quickly.',
+    locationExplainTitle:'Use your location?', locationExplainText:'Your location is used only on this device to sort Masses by distance. It is not stored or sent by this app.', locationContinue:'Continue', locationCancel:'Not now', showAllMasses:'Show all Masses', showingTop:'Showing the most useful results first. You can show all results at any time.',
     navHome:'Home', navSearch:'Search', navNear:'Near me', navFav:'My Churches', navMore:'More',
-    aboutTitle:'About this app', aboutText:'A simple Catholic Mass finder for Mauritius, built for fast mobile use.', versionWord:'Version', share:'Share', shareText:'Mass at {site}, {day} {time}. Directions: {url}', shareCopied:'Mass details copied. You can paste them into WhatsApp or a message.',
+    aboutTitle:'About this app', aboutText:'A simple Catholic Mass finder for Mauritius, built for fast mobile use.', aboutHtml:'<p>A simple Catholic Mass finder for Mauritius, built for fast mobile use.</p><p><b>Purpose:</b> help users find a suitable Mass quickly by day, parish, area, saved church, or nearby location.</p><p><b>Data:</b> the database is based on the project’s reconciled diocesan parish data and includes source links on each result.</p><p><b>Important:</b> Mass times can change. When timing is critical, verify directly with the parish using the source link.</p><p><b>Privacy:</b> location is used only on your device to sort nearby results. It is not stored by this app.</p>', mainNavigation:'Main navigation', languageLabel:'Language', quickActionsLabel:'Quick actions', nextUsefulMass:'Next useful Mass', shareTitle:'Mauritius Mass Finder', reportSubject:'Mass Finder correction: {site}', versionWord:'Version', share:'Share', shareText:'Mass at {site}, {day} {time}. Directions: {url}', shareCopied:'Mass details copied. You can paste them into WhatsApp or a message.',
     sundayNotice:'Showing Sunday morning Masses before midday.',
-    searchPlaceholder:'Search parish, church, town…', anyDay:'Any day', allRegions:'All regions', massesOnly:'Masses only', includeOther:'Include other celebrations',
+    searchPlaceholder:'Search parish, church, town…', searchLabel:'Search parish, church, town', dayFilterLabel:'Filter by day', regionFilterLabel:'Filter by region', modeFilterLabel:'Filter by Masses only or include other celebrations', anyDay:'Any day', allRegions:'All regions', massesOnly:'Masses only', includeOther:'Include other celebrations',
     findNext:'Find next Mass', useLocation:'Use my location', favouritesOnly:'My Churches only', clear:'Clear', loading:'Loading data…',
     updateTitle:'Update the database without rebuilding', updateA:'<b>Option A:</b> edit <code>data/masses.json</code> in GitHub and commit. The app fetches it on launch.', updateB:'<b>Option B:</b> publish a Google Sheet as CSV and paste the published CSV URL in <code>config.js</code>.', fallbackNote:'The app falls back to the embedded full database if the live file is unavailable.', footerNote:'Sources are linked on each result. Always verify special services directly with the parish when timing is critical.',
     rowWord:'rows', rows:'Rows', parishes:'Parishes', sites:'Sites', massRows:'Mass rows', other:'Other', showing:'Showing', results:'result(s)',
-    noResult:'No matching Mass found for this filter.', noResultHint:'Try clearing filters, Sunday morning, Near me, or include other celebrations.', nextNotice:'Showing the next available Masses across the coming 7 days, sorted by soonest time.', locationNotice:'Location sorting is active. Distances are shown for all sites; some are approximate locality distances.', favNotice:'Showing favourite churches only.', otherNotice:'Other celebrations are shown separately and are not mixed into Masses-only results.',
-    parish:'Parish', today:'Today', inDays:'In {n} day(s)', distanceExact:'{n} km', distanceApprox:'~{n} km', directions:'Directions', source:'Source', favouriteOn:'★ Favourite', favouriteOff:'☆ Favourite', reportCorrection:'Report correction',
-    dataLiveJson:'Database loaded', dataGoogle:'Live database loaded', dataFallback:'Offline database loaded', copied:'Correction details copied. Paste them into an email or message.', locationAsk:'Use your location to show nearby Masses. Your location is not stored.', locationDenied:'Location permission was not granted.', locationUnsupported:'Location is not supported by this browser.', correction:'Correction', checkEntry:'Please check this Mass Finder entry:', dayTime:'Day/time', serviceMass:'Mass', serviceOther:'Other celebration'
+    noResult:'No matching Mass found for this filter.', noResultHint:'Try clearing filters, Sunday morning, Near me, or include other celebrations.', nextNotice:'Showing the next available Masses across the coming 7 days, sorted by soonest time.', locationNotice:'Location sorting is active. Distances are shown for all sites; some are approximate locality distances.', favNotice:'Showing My Churches only.', otherNotice:'Other celebrations are shown separately and are not mixed into Masses-only results.',
+    parish:'Parish', today:'Today', inDays:'In {n} day(s)', distanceExact:'{n} km', distanceApprox:'~{n} km (approx.)', directions:'Directions', source:'Official source', favouriteOn:'★ My Church', favouriteOff:'☆ Save church', reportCorrection:'Report correction',
+    dataLiveJson:'Database loaded', dataGoogle:'Live database loaded', dataFallback:'Offline database loaded', copied:'Correction details copied. Paste them into an email or message.', locationAsk:'Use your location to show nearby Masses. Your location is not stored.', locationDenied:'Location permission was not granted.', locationUnsupported:'Location is not supported by this browser.', correction:'Correction', checkEntry:'Please check this Mass Finder entry:', dayTime:'Day/time', serviceMass:'Mass', serviceOther:'Other celebration', updateAvailable:'A new version is available', updateText:'Refresh to use the latest version.', updateRefresh:'Refresh now', updateDismiss:'Later'
   },
   fr: {
     appTitle:'Trouver une Messe à Maurice',
@@ -35,33 +36,74 @@ const T = {
     qaNearTitle:'Près de moi', qaNearText:'Utilisez votre position et triez les résultats proches.',
     qaSundayTitle:'Dimanche matin', qaSundayText:'Afficher les messes du dimanche avant midi.',
     qaFavTitle:'Mes églises', qaFavText:'Ouvrir rapidement vos églises sauvegardées.',
+    locationExplainTitle:'Utiliser votre position ?', locationExplainText:'Votre position sert uniquement sur cet appareil à trier les messes par distance. Elle n’est pas enregistrée ni envoyée par cette application.', locationContinue:'Continuer', locationCancel:'Pas maintenant', showAllMasses:'Afficher toutes les messes', showingTop:'Affichage prioritaire des résultats les plus utiles. Vous pouvez afficher tous les résultats à tout moment.',
     navHome:'Accueil', navSearch:'Recherche', navNear:'Près de moi', navFav:'Mes églises', navMore:'Plus',
-    aboutTitle:'À propos de cette application', aboutText:'Une application simple pour trouver rapidement les messes à Maurice sur mobile.', versionWord:'Version', share:'Partager', shareText:'Messe à {site}, {day} {time}. Itinéraire : {url}', shareCopied:'Les détails de la messe ont été copiés. Vous pouvez les coller dans WhatsApp ou un message.',
+    aboutTitle:'À propos de cette application', aboutText:'Une application simple pour trouver rapidement les messes à Maurice sur mobile.', aboutHtml:'<p>Une application simple pour trouver rapidement les messes à Maurice sur mobile.</p><p><b>Objectif :</b> aider les utilisateurs à trouver rapidement une messe par jour, paroisse, région, église sauvegardée ou position proche.</p><p><b>Données :</b> la base repose sur les données diocésaines réconciliées du projet et chaque résultat contient un lien source.</p><p><b>Important :</b> les horaires peuvent changer. Lorsque l’horaire est critique, vérifiez directement auprès de la paroisse avec le lien source.</p><p><b>Confidentialité :</b> votre position sert uniquement sur votre appareil à trier les résultats proches. Elle n’est pas enregistrée par cette application.</p>', mainNavigation:'Navigation principale', languageLabel:'Langue', quickActionsLabel:'Actions rapides', nextUsefulMass:'Prochaine messe utile', shareTitle:'Trouver une Messe à Maurice', reportSubject:'Correction Mass Finder : {site}', versionWord:'Version', share:'Partager', shareText:'Messe à {site}, {day} {time}. Itinéraire : {url}', shareCopied:'Les détails de la messe ont été copiés. Vous pouvez les coller dans WhatsApp ou un message.',
     sundayNotice:'Affichage des messes du dimanche matin avant midi.',
-    searchPlaceholder:'Rechercher paroisse, église, ville…', anyDay:'Tous les jours', allRegions:'Toutes les régions', massesOnly:'Messes seulement', includeOther:'Inclure les autres célébrations',
+    searchPlaceholder:'Rechercher paroisse, église, ville…', searchLabel:'Rechercher paroisse, église, ville', dayFilterLabel:'Filtrer par jour', regionFilterLabel:'Filtrer par région', modeFilterLabel:'Filtrer par messes seulement ou inclure les autres célébrations', anyDay:'Tous les jours', allRegions:'Toutes les régions', massesOnly:'Messes seulement', includeOther:'Inclure les autres célébrations',
     findNext:'Trouver la prochaine messe', useLocation:'Utiliser ma position', favouritesOnly:'Mes églises seulement', clear:'Effacer', loading:'Chargement des données…',
     updateTitle:'Mettre à jour la base sans reconstruire', updateA:'<b>Option A :</b> modifiez <code>data/masses.json</code> dans GitHub et validez. L’application le charge au démarrage.', updateB:'<b>Option B :</b> publiez une feuille Google en CSV et collez l’URL CSV publiée dans <code>config.js</code>.', fallbackNote:'L’application utilise la base intégrée si le fichier en direct n’est pas disponible.', footerNote:'Les sources sont liées sur chaque résultat. Vérifiez toujours les services spéciaux directement avec la paroisse lorsque l’horaire est critique.',
     rowWord:'lignes', rows:'Lignes', parishes:'Paroisses', sites:'Sites', massRows:'Lignes de messe', other:'Autres', showing:'Affichage de', results:'résultat(s)',
-    noResult:'Aucune messe trouvée avec ce filtre.', noResultHint:'Essayez d’effacer les filtres, dimanche matin, près de moi, ou incluez les autres célébrations.', nextNotice:'Affichage des prochaines messes disponibles sur les 7 prochains jours, triées par horaire.', locationNotice:'Le tri par position est actif. Les distances sont affichées pour tous les sites ; certaines sont approximatives par localité.', favNotice:'Affichage des églises favorites seulement.', otherNotice:'Les autres célébrations sont affichées séparément et ne sont pas mélangées aux résultats “messes seulement”.',
-    parish:'Paroisse', today:'Aujourd’hui', inDays:'Dans {n} jour(s)', distanceExact:'{n} km', distanceApprox:'~{n} km', directions:'Itinéraire', source:'Source', favouriteOn:'★ Favori', favouriteOff:'☆ Favori', reportCorrection:'Signaler une correction',
-    dataLiveJson:'Base chargée', dataGoogle:'Base en direct chargée', dataFallback:'Base hors ligne chargée', copied:'Les détails de correction ont été copiés. Collez-les dans un e-mail ou un message.', locationAsk:'Utilisez votre position pour afficher les messes proches. Votre position n’est pas enregistrée.', locationDenied:'L’autorisation de localisation n’a pas été accordée.', locationUnsupported:'La localisation n’est pas prise en charge par ce navigateur.', correction:'Correction', checkEntry:'Veuillez vérifier cette entrée du Mass Finder :', dayTime:'Jour/heure', serviceMass:'Messe', serviceOther:'Autre célébration'
+    noResult:'Aucune messe trouvée avec ce filtre.', noResultHint:'Essayez d’effacer les filtres, dimanche matin, près de moi, ou incluez les autres célébrations.', nextNotice:'Affichage des prochaines messes disponibles sur les 7 prochains jours, triées par horaire.', locationNotice:'Le tri par position est actif. Les distances sont affichées pour tous les sites ; certaines sont approximatives par localité.', favNotice:'Affichage de mes églises seulement.', otherNotice:'Les autres célébrations sont affichées séparément et ne sont pas mélangées aux résultats “messes seulement”.',
+    parish:'Paroisse', today:'Aujourd’hui', inDays:'Dans {n} jour(s)', distanceExact:'{n} km', distanceApprox:'~{n} km (approx.)', directions:'Itinéraire', source:'Source officielle', favouriteOn:'★ Mon église', favouriteOff:'☆ Sauvegarder', reportCorrection:'Signaler une correction',
+    dataLiveJson:'Base chargée', dataGoogle:'Base en direct chargée', dataFallback:'Base hors ligne chargée', copied:'Les détails de correction ont été copiés. Collez-les dans un e-mail ou un message.', locationAsk:'Utilisez votre position pour afficher les messes proches. Votre position n’est pas enregistrée.', locationDenied:'L’autorisation de localisation n’a pas été accordée.', locationUnsupported:'La localisation n’est pas prise en charge par ce navigateur.', correction:'Correction', checkEntry:'Veuillez vérifier cette entrée du Mass Finder :', dayTime:'Jour/heure', serviceMass:'Messe', serviceOther:'Autre célébration', updateAvailable:'Une nouvelle version est disponible', updateText:'Actualisez pour utiliser la dernière version.', updateRefresh:'Actualiser', updateDismiss:'Plus tard'
   }
 };
 let DATA = [];
 let META = {};
 let userPos = null;
-let nextMode = false;
+let nextMode = true;
 let nearMode = false;
 let quickMode = '';
 let favOnly = false;
-const savedLang = localStorage.getItem('mmf_lang');
+let showAllResults = false;
+function safeGetLocalStorage(key, fallback){
+  try { const value = localStorage.getItem(key); return value == null ? fallback : value; } catch(e){ return fallback; }
+}
+function safeSetLocalStorage(key, value){
+  try { localStorage.setItem(key, value); } catch(e){}
+}
+function safeLoadFavourites(){
+  try {
+    const parsed = JSON.parse(safeGetLocalStorage('mmf_site_favourites', '[]'));
+    return Array.isArray(parsed) ? new Set(parsed.filter(Boolean)) : new Set();
+  } catch(e){
+    try { localStorage.removeItem('mmf_site_favourites'); } catch(_e){}
+    return new Set();
+  }
+}
+const savedLang = safeGetLocalStorage('mmf_lang', '');
 let currentLang = (savedLang === 'fr' || savedLang === 'en') ? savedLang : (((navigator.language || 'en').toLowerCase().startsWith('fr')) ? 'fr' : 'en');
-const favs = new Set(JSON.parse(localStorage.getItem('mmf_site_favourites') || '[]'));
+const favs = safeLoadFavourites();
 const $ = id => document.getElementById(id);
 const tr = (key, vars={}) => String((T[currentLang] && T[currentLang][key]) || T.en[key] || key).replace(/\{(\w+)\}/g, (_,k)=>vars[k] ?? '');
 const dayLabel = d => (DAY_LABELS[currentLang] && DAY_LABELS[currentLang][d]) || d;
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\bsaint\b/g,'st').replace(/[’']/g,' ').replace(/[^a-z0-9]+/g,' ').trim();
+const norm = s => String(s || '')
+  .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .replace(/[œŒ]/g,'oe').replace(/[æÆ]/g,'ae')
+  .toLowerCase()
+  .replace(/[’'`´]/g,' ')
+  .replace(/\b(sainte|saintes|saint|saints|ste|stes|st)\b/g,'st')
+  .replace(/[^a-z0-9]+/g,' ')
+  .replace(/\s+/g,' ')
+  .trim();
+const SEARCH_STOPWORDS = new Set(['de','du','des','la','le','l','les','notre','dame']);
+function searchKey(s){
+  return norm(s).split(' ').filter(t => t && !SEARCH_STOPWORDS.has(t)).join(' ');
+}
+function searchMatchesRow(r, rawQuery){
+  const q = norm(rawQuery);
+  if(!q) return true;
+  const qKey = searchKey(rawQuery);
+  const hay = norm([r.search_text,r.parish_name,r.site_name,r.town,r.region,r.parish_label,r.maps_query,r.special_rule,r.qualifier,r.notes].join(' '));
+  if(hay.includes(q)) return true;
+  const hayKey = searchKey(hay);
+  if(qKey && hayKey.includes(qKey)) return true;
+  const hayTokens = new Set(hayKey.split(' ').filter(Boolean));
+  const tokens = qKey.split(' ').filter(Boolean);
+  return tokens.length > 0 && tokens.every(t => hayTokens.has(t));
+}
 function uniqParts(parts){ const seen=new Set(); return parts.map(x=>String(x||'').trim()).filter(x=>{ const k=norm(x); if(!k || seen.has(k)) return false; seen.add(k); return true; }); }
 function buildMapsQuery(r){ return uniqParts([r.site_name, r.town, r.parish_label || r.parish_name, r.region, 'Mauritius']).join(', '); }
 let SITE_NAME_COLLISIONS = new Set();
@@ -105,7 +147,7 @@ function normaliseRows(rows){
 async function loadData(){
   const cfg = window.MASS_FINDER_CONFIG || {};
   let loadedKey = 'dataFallback';
-  let raw = window.MMF_EMBEDDED_DATA || {rows:[]};
+  let raw = window.MMF_EMBEDDED_DATA || window.MMF_FALLBACK_DATA || {rows:[]};
   try{
     if(cfg.GOOGLE_SHEET_CSV_URL){
       const url = cfg.GOOGLE_SHEET_CSV_URL + (cfg.GOOGLE_SHEET_CSV_URL.includes('?') ? '&' : '?') + 'v=' + Date.now();
@@ -129,13 +171,23 @@ function updateStaticText(){
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = tr(el.dataset.i18n));
   document.querySelectorAll('[data-i18n-html]').forEach(el => el.innerHTML = tr(el.dataset.i18nHtml));
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => el.placeholder = tr(el.dataset.i18nPlaceholder));
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => el.setAttribute('aria-label', tr(el.dataset.i18nAriaLabel)));
+  document.title = tr('appTitle') + ' v' + APP_VERSION;
   $('langEn')?.classList.toggle('active', currentLang === 'en');
   $('langFr')?.classList.toggle('active', currentLang === 'fr');
   if($('dataStatus')?.dataset.loadedKey) $('dataStatus').textContent = tr($('dataStatus').dataset.loadedKey) + ' · ' + DATA.length + ' ' + tr('rowWord') + ' · v' + APP_VERSION;
   const vf=$('versionFooter'); if(vf) vf.textContent='v' + APP_VERSION;
   const av=$('aboutVersion'); if(av) av.textContent=APP_VERSION;
+  const ub=$('updateBanner'); if(ub && ub.style.display !== 'none'){
+    const latest = ub.dataset.latest || '';
+    const ut=$('updateTitle'), ux=$('updateText'), ur=$('updateRefresh'), ud=$('updateDismiss');
+    if(ut) ut.textContent = tr('updateAvailable') + (latest ? ' — v' + latest : '');
+    if(ux) ux.textContent = tr('updateText');
+    if(ur) ur.textContent = tr('updateRefresh');
+    if(ud) ud.textContent = tr('updateDismiss');
+  }
 }
-function setLang(lang){ currentLang = lang; localStorage.setItem('mmf_lang', lang); updateStaticText(); refreshDayOptions(); render(); }
+function setLang(lang){ currentLang = lang; safeSetLocalStorage('mmf_lang', lang); updateStaticText(); refreshDayOptions(); render(); }
 function initFilters(){
   refreshDayOptions();
   const regionSelect = $('region');
@@ -162,11 +214,11 @@ function relativeText(delta){
 }
 function distKm(a,b,c,d){ if([a,b,c,d].some(x=>x==null || Number.isNaN(x))) return null; const R=6371, rad=x=>x*Math.PI/180; const dLat=rad(c-a), dLon=rad(d-b); const h=Math.sin(dLat/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(dLon/2)**2; return 2*R*Math.asin(Math.sqrt(h)); }
 function filtered(){
-  const q=norm($('q').value), day=$('day').value, region=$('region').value, mode=$('mode').value;
+  const rawQ=$('q').value, day=$('day').value, region=$('region').value, mode=$('mode').value;
   let arr = DATA.filter(r=>r.is_active);
   if(mode === 'mass') arr = arr.filter(r=>r.is_mass_only_visible);
   if(favOnly) arr = arr.filter(r=>favs.has(r.site_uid));
-  if(q) arr = arr.filter(r=>r.search_text.includes(q) || norm([r.parish_name,r.site_name,r.town,r.region,r.parish_label,r.maps_query].join(' ')).includes(q));
+  if(norm(rawQ)) arr = arr.filter(r=>searchMatchesRow(r, rawQ));
   if(day && !nextMode) arr = arr.filter(r=>r.day_of_week === day);
   if(region) arr = arr.filter(r=>r.region === region);
   if(quickMode === 'sundayMorning') arr = arr.filter(r=>r.day_of_week === 'Dimanche' && mins(r.time_24h) < 12*60);
@@ -178,17 +230,17 @@ function filtered(){
   return arr;
 }
 function mapsUrl(r){ const useExact = isExactCoord(r) && r.latitude != null && r.longitude != null; const destRaw = useExact ? (r.latitude+','+r.longitude) : (r.maps_query || buildMapsQuery(r)); const dest=encodeURIComponent(destRaw); const origin=userPos ? '&origin='+encodeURIComponent(userPos.lat+','+userPos.lon) : ''; return 'https://www.google.com/maps/dir/?api=1'+origin+'&destination='+dest; }
-function toggleFav(siteUid){ if(favs.has(siteUid)) favs.delete(siteUid); else favs.add(siteUid); localStorage.setItem('mmf_site_favourites', JSON.stringify([...favs])); render(); }
+function toggleFav(siteUid){ if(favs.has(siteUid)) favs.delete(siteUid); else favs.add(siteUid); safeSetLocalStorage('mmf_site_favourites', JSON.stringify([...favs])); render(); }
 function shareAction(r){
   const url = mapsUrl(r);
   const text = tr('shareText', {site:siteDisplayName(r), day:dayLabel(r.day_of_week), time:r.time_24h, url});
-  if(navigator.share){ navigator.share({title:'Mauritius Mass Finder', text, url}).catch(()=>{}); }
+  if(navigator.share){ navigator.share({title:tr('shareTitle'), text, url}).catch(()=>{}); }
   else { navigator.clipboard?.writeText(text).then(()=>alert(tr('shareCopied'))).catch(()=>alert(text)); }
 }
 
 function reportAction(r){
   const cfg = window.MASS_FINDER_CONFIG || {};
-  const subject = 'Mass Finder correction: ' + siteDisplayName(r);
+  const subject = tr('reportSubject', {site:siteDisplayName(r)});
   const body = [tr('checkEntry'), '', siteDisplayName(r), tr('parish')+': '+(r.parish_label||r.parish_name), tr('dayTime')+': '+dayLabel(r.day_of_week)+' '+r.time_24h, tr('source')+': '+r.source_url, '', tr('correction')+': '].join('\n');
   if(cfg.REPORT_EMAIL) location.href = 'mailto:'+encodeURIComponent(cfg.REPORT_EMAIL)+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
   else navigator.clipboard?.writeText(body).then(()=>alert(tr('copied'))).catch(()=>alert(body));
@@ -223,7 +275,7 @@ function renderNextHero(){
   if(!r){ root.innerHTML=''; return; }
   const d=userPos?distKm(userPos.lat,userPos.lon,r.latitude,r.longitude):null;
   const meta=[dayLabel(r.day_of_week), r.town, d!=null ? distanceLabel(r,d) : ''].filter(Boolean).join(' · ');
-  root.innerHTML='<div class="heroLine"><div><div class="small">'+esc(currentLang==='fr'?'Prochaine messe utile':'Next useful Mass')+'</div><div class="heroSite">'+esc(siteDisplayName(r))+'</div><div class="heroMeta">'+esc(meta)+'</div></div><div class="heroTime">'+esc(r.time_24h)+'</div></div><div class="heroActions"><a class="primarylink" target="_blank" rel="noopener" href="'+esc(mapsUrl(r))+'">'+esc(tr('directions'))+'</a><button type="button" id="heroShare">'+esc(tr('share'))+'</button><button type="button" id="heroShowNext">'+esc(tr('findNext'))+'</button></div>';
+  root.innerHTML='<div class="heroLine"><div><div class="small">'+esc(tr('nextUsefulMass'))+'</div><div class="heroSite">'+esc(siteDisplayName(r))+'</div><div class="heroMeta">'+esc(meta)+'</div></div><div class="heroTime">'+esc(r.time_24h)+'</div></div><div class="heroActions"><a class="primarylink" target="_blank" rel="noopener" href="'+esc(mapsUrl(r))+'">'+esc(tr('directions'))+'</a><button type="button" id="heroShare">'+esc(tr('share'))+'</button><button type="button" id="heroShowNext">'+esc(tr('findNext'))+'</button></div>';
   $('heroShare')?.addEventListener('click',()=>shareAction(r));
   $('heroShowNext')?.addEventListener('click',()=>showNext());
 }
@@ -239,10 +291,16 @@ function render(){
     const clear=el('button',{},tr('clear')); clear.addEventListener('click',()=>{$('clearBtn').click();}); er.appendChild(clear);
     const sun=el('button',{},tr('qaSundayTitle')); sun.addEventListener('click',()=>showSunday()); er.appendChild(sun);
     const near=el('button',{},tr('qaNearTitle')); near.addEventListener('click',()=>showNear()); er.appendChild(near);
+    const all=el('button',{},tr('includeOther')); all.addEventListener('click',()=>{$('mode').value='all'; nextMode=false; quickMode=''; showAllResults=true; render();}); er.appendChild(all);
     empty.appendChild(er); root.appendChild(empty); return;
   }
-  root.appendChild(el('div',{class:'small'},tr('showing')+' '+arr.length+' '+tr('results')));
-  for(const r of arr){
+  const initialBroadView = !showAllResults && !($('q').value || $('day').value || $('region').value || favOnly || nearMode || quickMode);
+  const displayArr = initialBroadView ? arr.slice(0,24) : arr;
+  root.appendChild(el('div',{class:'small'},tr('showing')+' '+displayArr.length+' '+tr('results')+(initialBroadView && arr.length>displayArr.length ? ' · '+tr('showingTop') : '')));
+  if(initialBroadView && arr.length>displayArr.length){
+    const allWrap=el('div',{class:'actions'}); const btn=el('button',{class:'ghost'},tr('showAllMasses')); btn.addEventListener('click',()=>{showAllResults=true; render();}); allWrap.appendChild(btn); root.appendChild(allWrap);
+  }
+  for(const r of displayArr){
     const card=el('article',{class:'card'});
     const top=el('div',{class:'top'}); const left=el('div');
     left.appendChild(el('div',{class:'site'},siteDisplayName(r)));
@@ -275,23 +333,52 @@ function render(){
 function scrollToResults(){ document.getElementById('results')?.scrollIntoView({behavior:'smooth', block:'start'}); }
 function scrollToSearch(){ document.getElementById('searchPanel')?.scrollIntoView({behavior:'smooth', block:'start'}); }
 function setActiveNav(id){ document.querySelectorAll('.navBtn').forEach(b=>b.classList.toggle('active', b.id===id)); }
-function showNext(){ nextMode=true; nearMode=false; quickMode=''; favOnly=false; syncFavButton(); $('day').value=''; $('mode').value='mass'; setActiveNav('navHome'); render(); scrollToResults(); }
-function showSunday(){ nextMode=false; nearMode=false; quickMode='sundayMorning'; favOnly=false; syncFavButton(); $('day').value='Dimanche'; $('mode').value='mass'; setActiveNav('navHome'); render(); scrollToResults(); }
+function showNext(){ nextMode=true; nearMode=false; quickMode=''; favOnly=false; showAllResults=false; syncFavButton(); $('day').value=''; $('mode').value='mass'; setActiveNav('navHome'); render(); scrollToResults(); }
+function showSunday(){ nextMode=false; nearMode=false; quickMode='sundayMorning'; favOnly=false; showAllResults=false; syncFavButton(); $('day').value='Dimanche'; $('mode').value='mass'; setActiveNav('navHome'); render(); scrollToResults(); }
 function syncFavButton(){ $('favOnlyBtn')?.classList.toggle('primary', favOnly); }
-function showFavs(){ favOnly=true; nextMode=false; nearMode=false; quickMode=''; syncFavButton(); setActiveNav('navFav'); render(); scrollToResults(); }
-function showNear(){
+function showFavs(){ favOnly=true; nextMode=false; nearMode=false; quickMode=''; showAllResults=false; syncFavButton(); setActiveNav('navFav'); render(); scrollToResults(); }
+function ensureLocationPrompt(){
+  let panel = $('locationPrompt');
+  if(panel) return panel;
+  panel = document.createElement('div');
+  panel.id = 'locationPrompt';
+  panel.className = 'updateBanner locationPrompt';
+  panel.setAttribute('role','dialog');
+  panel.setAttribute('aria-live','polite');
+  panel.innerHTML = '<div><b id="locationPromptTitle"></b><div id="locationPromptText" class="small"></div></div><div class="updateActions"><button id="locationPromptContinue" class="primary" type="button"></button><button id="locationPromptCancel" class="ghost" type="button"></button></div>';
+  const searchPanel = $('searchPanel') || document.querySelector('.wrap') || document.body;
+  searchPanel.parentNode.insertBefore(panel, searchPanel);
+  $('locationPromptContinue').addEventListener('click', () => { panel.style.display='none'; requestLocationAndShowNear(); });
+  $('locationPromptCancel').addEventListener('click', () => { panel.style.display='none'; });
+  return panel;
+}
+function updateLocationPromptText(){
+  const panel = $('locationPrompt'); if(!panel) return;
+  $('locationPromptTitle').textContent = tr('locationExplainTitle');
+  $('locationPromptText').textContent = tr('locationExplainText');
+  $('locationPromptContinue').textContent = tr('locationContinue');
+  $('locationPromptCancel').textContent = tr('locationCancel');
+}
+function requestLocationAndShowNear(){
   if(!navigator.geolocation){ alert(tr('locationUnsupported')); return; }
-  if(!userPos && !confirm(tr('locationAsk'))) return;
   navigator.geolocation.getCurrentPosition(p=>{
     userPos={lat:p.coords.latitude, lon:p.coords.longitude};
-    nearMode=true; nextMode=false; quickMode=''; favOnly=false; syncFavButton(); $('mode').value='mass'; setActiveNav('navNear'); render(); scrollToResults();
+    nearMode=true; nextMode=false; quickMode=''; favOnly=false; showAllResults=false; syncFavButton(); $('mode').value='mass'; setActiveNav('navNear'); render(); scrollToResults();
   },()=>alert(tr('locationDenied')));
 }
+function showNear(){
+  if(!navigator.geolocation){ alert(tr('locationUnsupported')); return; }
+  if(userPos){ requestLocationAndShowNear(); return; }
+  const panel = ensureLocationPrompt();
+  updateLocationPromptText();
+  panel.style.display = 'flex';
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
+}
 
-['q','day','region','mode'].forEach(id => $(id).addEventListener('input',()=>{ nextMode=false; quickMode=''; render(); }));
+['q','day','region','mode'].forEach(id => $(id).addEventListener('input',()=>{ nextMode=false; quickMode=''; showAllResults=false; render(); }));
 $('nextBtn').addEventListener('click',()=>showNext());
-$('clearBtn').addEventListener('click',()=>{ ['q','day','region'].forEach(id=>$(id).value=''); $('mode').value='mass'; nextMode=false; nearMode=false; quickMode=''; favOnly=false; userPos=null; syncFavButton(); setActiveNav('navHome'); render(); });
-$('favOnlyBtn').addEventListener('click',()=>{ favOnly=!favOnly; nextMode=false; nearMode=false; quickMode=''; syncFavButton(); if(favOnly) setActiveNav('navFav'); render(); scrollToResults(); });
+$('clearBtn').addEventListener('click',()=>{ ['q','day','region'].forEach(id=>$(id).value=''); $('mode').value='mass'; nextMode=true; nearMode=false; quickMode=''; favOnly=false; showAllResults=false; userPos=null; syncFavButton(); setActiveNav('navHome'); render(); });
+$('favOnlyBtn').addEventListener('click',()=>{ favOnly=!favOnly; nextMode=false; nearMode=false; quickMode=''; showAllResults=false; syncFavButton(); if(favOnly) setActiveNav('navFav'); render(); scrollToResults(); });
 $('nearBtn').addEventListener('click',()=>showNear());
 
 $('qaNow')?.addEventListener('click',()=>showNext());
@@ -305,7 +392,73 @@ $('navFav')?.addEventListener('click',()=>showFavs());
 $('navMore')?.addEventListener('click',()=>{setActiveNav('navMore'); document.querySelector('footer')?.scrollIntoView({behavior:'smooth', block:'end'});});
 $('langEn')?.addEventListener('click',()=>setLang('en'));
 $('langFr')?.addEventListener('click',()=>setLang('fr'));
-if('serviceWorker' in navigator && location.protocol !== 'file:') window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-window.MMF = {render, filtered, getData:()=>DATA, setLang, version:APP_VERSION, buildMapsQuery, siteDisplayName};
+function applyServiceWorkerUpdate(){
+  if(!('serviceWorker' in navigator) || location.protocol === 'file:') { location.reload(); return; }
+  navigator.serviceWorker.getRegistration().then(reg => {
+    if(reg && reg.waiting){
+      let reloaded = false;
+      const reloadOnce = () => { if(!reloaded){ reloaded = true; location.reload(); } };
+      navigator.serviceWorker.addEventListener('controllerchange', reloadOnce, {once:true});
+      reg.waiting.postMessage({type:'SKIP_WAITING'});
+      setTimeout(reloadOnce, 3000);
+    } else {
+      location.reload();
+    }
+  }).catch(()=>location.reload());
+}
+
+function ensureUpdateBanner(){
+  let b = $('updateBanner');
+  if(b) return b;
+  b = document.createElement('div');
+  b.id = 'updateBanner';
+  b.className = 'updateBanner';
+  b.setAttribute('role','status');
+  b.setAttribute('aria-live','polite');
+  b.innerHTML = '<div><b id="updateTitle"></b><div id="updateText" class="small"></div></div><div class="updateActions"><button id="updateRefresh" class="primary" type="button"></button><button id="updateDismiss" class="ghost" type="button"></button></div>';
+  const wrap = document.querySelector('.wrap') || document.body;
+  wrap.insertBefore(b, wrap.firstChild);
+  $('updateRefresh').setAttribute('aria-label', tr('updateRefresh'));
+  $('updateRefresh').addEventListener('click', () => applyServiceWorkerUpdate());
+  $('updateDismiss').addEventListener('click', () => { b.style.display='none'; sessionStorage.setItem('mmf_update_dismissed_' + APP_VERSION, '1'); });
+  return b;
+}
+function showUpdateBanner(newVersion){
+  if(sessionStorage.getItem('mmf_update_dismissed_' + APP_VERSION)) return;
+  const b = ensureUpdateBanner();
+  b.dataset.latest = newVersion || '';
+  $('updateTitle').textContent = tr('updateAvailable') + (newVersion ? ' — v' + newVersion : '');
+  $('updateText').textContent = tr('updateText');
+  $('updateRefresh').textContent = tr('updateRefresh');
+  $('updateDismiss').textContent = tr('updateDismiss');
+  b.style.display = 'flex';
+}
+async function checkForUpdate(){
+  if(location.protocol === 'file:') return;
+  try{
+    const res = await fetch('version.json?ts=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) return;
+    const info = await res.json();
+    const latest = String(info.version || '').trim();
+    if(latest && latest !== APP_VERSION) showUpdateBanner(latest);
+  }catch(e){}
+}
+function registerServiceWorker(){
+  if(!('serviceWorker' in navigator) || location.protocol === 'file:') return;
+  navigator.serviceWorker.register('sw.js').then(reg => {
+    reg.update().catch(()=>{});
+    if(reg.waiting) showUpdateBanner();
+    reg.addEventListener('updatefound', () => {
+      const nw = reg.installing;
+      if(!nw) return;
+      nw.addEventListener('statechange', () => {
+        if(nw.state === 'installed' && navigator.serviceWorker.controller) showUpdateBanner();
+      });
+    });
+  }).catch(()=>{});
+}
+window.addEventListener('load',()=>{ registerServiceWorker(); checkForUpdate(); setInterval(checkForUpdate, 30*60*1000); });
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) checkForUpdate(); });
+window.MMF = {render, filtered, getData:()=>DATA, setLang, version:APP_VERSION, buildMapsQuery, siteDisplayName, checkForUpdate};
 loadData();
 })();

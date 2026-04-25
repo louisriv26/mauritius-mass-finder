@@ -1,9 +1,9 @@
-# Mauritius Mass Finder v15.1
+# Mauritius Mass Finder v16.2 — Release-Hardening Edition
 
 Public-facing bilingual Mass Finder for Mauritius.
 
-This release is the final checked version following v15.0 disambiguation. It preserves the premium UX, repeated-name handling, richer Google Maps fallback query, visible versioning, and live-update structure.
+This release hardens v16.1 with stronger update/cache behavior, stop-word tolerant search, accessibility labels, clearer trust wording, and cleaner package hygiene.
 
 Normal Mass schedule updates should be made in `data/masses.json` or `data/masses.csv`. The app keeps an embedded fallback database for offline/resilience.
 
-Coordinate note: all 117 sites have coordinates. Existing/exact coordinates are used for distance and direct pin navigation; approximate locality-level coordinates are shown with `~` and directions use Google Maps text query to avoid false precision.
+Coordinate note: all 117 sites have coordinates. Exact/existing coordinates are used for direct pin navigation; approximate locality-level coordinates are shown with `~` and directions use Google Maps text query to avoid false precision.

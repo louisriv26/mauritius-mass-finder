@@ -1,0 +1,66 @@
+Mauritius Mass Finder — v16.2 Release-Hardening Validation Report
+
+Build basis
+- Built from v16.1 quality-polish release.
+- Core database preserved without row-level schedule changes.
+
+Release-hardening changes
+1. Service-worker / update flow
+- Version updated to v16.2.
+- Cache name updated to mmf-v16.2-release-hardening.
+- Refresh/update action now attempts to activate a waiting service worker through SKIP_WAITING and reloads after controller change, with safe fallback reload.
+- version.json and live data files continue to bypass cache where possible.
+
+2. Search hardening
+- Added stop-word tolerant search for de, du, des, la, le, l, les, notre, dame.
+- Preserved accent, apostrophe, hyphen, spacing, Saint/St/Sainte/Ste normalization.
+- Verified searches return results:
+  - Notre Dame Salette
+  - Notre-Dame-de-la-Salette
+  - Salette
+  - Sacre Coeur
+  - St Helene
+  - Ste Helene
+  - Sainte Helene
+  - Saint Jean
+  - St Jean
+
+3. Accessibility
+- Added ARIA labels for search and filter controls.
+- Added/kept ARIA support for language, navigation, quick actions, update prompt, and location prompt.
+- Maintained mobile tap-target sizing and simple UI.
+
+4. Package hygiene
+- Removed stale v16.0/v16.1 validation reports from the release root.
+- Added this v16.2 validation report.
+- Updated README, manifest, version.json, app version labels, and cache label to v16.2.
+- Added manifest.json while preserving manifest.webmanifest.
+- Added service-worker.js compatibility copy while preserving sw.js registration.
+
+5. Trust signals and resilience
+- Clarified approximate distance label as approximate.
+- Preserved source links, special-rule labels, other-celebration labels, safe My Churches parsing, missing-data fallback, denied-location messaging, and bilingual About panel.
+
+Validation summary
+- JavaScript syntax: passed.
+- Zip integrity: passed after packaging.
+- Required GitHub Pages files: present.
+- Total rows: 383.
+- Parishes: 47.
+- Sites: 117.
+- Mass rows: 378.
+- Other/ambiguous rows: 5.
+- Duplicate technical keys: 0.
+- Invalid days: 0.
+- Invalid times: 0.
+- Missing coordinates: 0.
+- Stale release reports in root: 0.
+
+Residual risks
+- Browser service-worker behavior should still be live-tested on iPhone Safari, Android Chrome, and desktop Chrome after GitHub deployment because cache update timing differs by browser.
+- Some coordinates are locality-level approximate rather than exact church-door coordinates; the UI signals approximation.
+- Search is stronger but not full typo-tolerant fuzzy search.
+
+Release verdict
+- v16.2 is the cleanest and most public-ready release so far.
+- Suitable for public sharing, subject to a quick live-device smoke test after upload to GitHub Pages.
