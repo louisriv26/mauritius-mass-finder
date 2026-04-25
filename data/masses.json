@@ -1,15 +1,15 @@
 {
   "meta": {
     "app": "Mauritius Mass Finder",
-    "version": "v15.1-final",
-    "generated_at": "2026-04-24T18:10:00+04:00",
-    "source": "v15.1 final checked release based on v15.0 disambiguation build; fixes metadata/version consistency and adds Share action to the hero panel.",
+    "version": "v16.2-release-hardening",
+    "generated_at": "2026-04-25T00:00:00+04:00",
+    "source": "v16.2 release-hardening edition based on validated full database.",
     "row_count": 383,
     "parish_count": 47,
     "site_count": 117,
     "mass_rows": 378,
     "other_rows": 5,
-    "notes": "Premium UX build with quick actions, bottom navigation, visible versioning, share action, complete coordinate coverage, approximate-distance indicator, v15 same-name/directions disambiguation logic, and v15.1 metadata consistency.",
+    "notes": "Bilingual audit build with About this app fully translated, dynamic title/navigation/share/report text audited, visible footer/About versioning, quick actions, update banner, My Churches wording, complete coordinate coverage, approximate-distance indicator, and same-name/directions disambiguation logic.",
     "coordinate_update": "All 117 sites now have coordinates. 66 sites use existing coordinates; 51 sites use approximate locality-level coordinates pending exact church-door verification.",
     "directions_update": "Approximate-coordinate directions now use a richer text query: site + town + parish label + region + Mauritius. Exact/verified coordinates still use latitude/longitude pins."
   },
