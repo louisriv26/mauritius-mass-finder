@@ -1,0 +1,46 @@
+MAURITIUS MASS FINDER v20.5 — TRUST STRIP + EMPTY-STATE UX POLISH
+
+Baseline used:
+mauritius_mass_finder_v20_4_final_audit_cleanup_github_pages_ready.zip
+
+Release objective:
+Minimal public-facing UX polish focused on clarity, trust, and perceived quality. This release does not change Mass schedules, parish hierarchy, coordinates, source URLs, source excerpts, search matching logic, or Sunday-obligation logic.
+
+Files changed:
+- index.html
+- app.js
+- styles.css
+- version.json
+- manifest.json
+- service-worker.js
+- fallback-data.js metadata only
+- data/masses.json metadata only
+- README.md
+- release/validation/UX reports
+
+UX changes:
+1. Replaced the public technical result/stat line with a bilingual trust strip:
+   EN: 48 parishes across Mauritius · Verified 26 Apr 2026
+   FR: 48 paroisses à travers l’île Maurice · Vérifié le 26 avr 2026
+2. Removed permanent public developer-style counters from the main flow.
+3. Result count now appears only when a narrowing search/filter is active.
+4. No-results state is now a friendly bilingual card with recovery actions.
+5. About and What’s New content updated for v20.5.
+
+Preserved from v20.4:
+- database rows and field content
+- Masses-only default
+- Include other celebrations toggle
+- search normalization and stopword protection
+- Sunday-obligation row-level eligibility
+- source links, directions, report-correction flow
+- My Churches, Near Me, Help, About, What’s New, update guidance
+
+Versioning:
+- visible app version: v20.5
+- version.json: 20.5
+- manifest version: 20.5
+- service-worker cache: mauritius-mass-finder-v20.5
+
+Verdict:
+PASS

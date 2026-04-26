@@ -1,0 +1,63 @@
+MAURITIUS MASS FINDER v20.5 — VALIDATION REPORT
+
+Baseline inspected:
+mauritius_mass_finder_v20_4_final_audit_cleanup_github_pages_ready.zip
+
+Baseline/package inspection:
+- index.html, app.js, styles.css, version.json, manifest.json, service-worker.js, fallback-data.js, data/masses.json, data/masses.csv, README, and reports inspected.
+- v20.4 public UI contained a permanent technical result/stat line combining visible result count, Mass row total, parish count, and site count.
+- v20.4 no-results behaviour used a plain text empty message.
+
+Data integrity checks:
+- Total rows unchanged: 396
+- Parish IDs unchanged: 48
+- Site IDs unchanged: 118
+- Default Mass-visible rows unchanged: 379
+- No Mass schedule, parish hierarchy, coordinate, source URL, source excerpt, or Sunday-obligation data changed.
+
+Search regression checks:
+- Sacré-Cœur and Sacre Coeur returned matching counts.
+- Notre-Dame and Notre Dame returned matching counts.
+- Saint-Marc and St Marc returned matching counts.
+- Nonsense query returned zero results and displayed the new empty-state card.
+- Stopword-only query returned zero results, not all results.
+- Empty search restored the default Masses-only result set.
+
+Core app regression checks:
+Passed by file inspection and JavaScript syntax validation:
+- default Masses-only view
+- Include other celebrations toggle
+- day filter
+- Sunday-obligation button
+- Near Me / distance sorting path
+- My Churches path
+- source links
+- directions links
+- report-correction mailto link
+- Help / About / What’s New / How to update modals
+- EN/FR language switching and localStorage persistence
+
+Accessibility/mobile checks:
+- Trust strip uses readable text, wraps naturally, and is placed near the top without blocking controls.
+- Result-count paragraph uses aria-live and is hidden when inactive.
+- Results section remains aria-live for dynamic updates.
+- Empty-state card uses role=status and provides tappable recovery actions.
+- Existing visible focus state retained.
+- No information is conveyed by colour alone.
+
+PWA/package checks:
+- APP_VERSION updated to 20.5.
+- version.json updated to 20.5.
+- manifest version and description updated to 20.5.
+- service-worker cache name updated to mauritius-mass-finder-v20.5.
+- .nojekyll present.
+- ZIP root is directly deployable; no nested folder issue.
+- JavaScript syntax check passed.
+- ZIP integrity check passed.
+
+Residual risks:
+- Browser-specific PWA update behaviour should be smoke-tested after GitHub Pages deployment.
+- This was not a fresh diocesan scrape and does not claim new source reconciliation.
+
+Final verdict:
+PASS — safe for public release.

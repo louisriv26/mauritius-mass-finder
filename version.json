@@ -1,6 +1,6 @@
 {
-  "version": "17.2",
-  "name": "Mauritius Mass Finder v17.2 Public Release Hardening Edition",
-  "released": "2026-04-25",
-  "notes": "Public-release hardening for trust, bilingual consistency, mobile usability, update reliability, and Sunday/Vigil clarity. Includes clearer Sunday/Saturday Vigil/Weekday badges, stronger exceptional-event caution, refined Help Center, and regression validation."
+  "version": "20.5",
+  "built_at": "2026-04-26",
+  "channel": "public-release-candidate",
+  "notes": "v20.5 trust strip and empty-state UX polish. Public technical counters removed; contextual result count and bilingual empty state added. No Mass schedule, source, coordinate, search-logic, or Sunday-obligation changes."
 }

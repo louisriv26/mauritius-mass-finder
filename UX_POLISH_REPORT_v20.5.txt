@@ -1,0 +1,49 @@
+MAURITIUS MASS FINDER v20.5 — UX POLISH REPORT
+
+UX problem addressed:
+The v20.4 top-of-results display exposed implementation-style counters in the main public flow. This was useful for validation but less appropriate for normal churchgoers. The no-results state was functional but not polished enough for public use.
+
+Implemented solution:
+1. Trust strip
+- Always visible near the top of the app.
+- English: 48 parishes across Mauritius · Verified 26 Apr 2026
+- French: 48 paroisses à travers l’île Maurice · Vérifié le 26 avr 2026
+- Language updates live when toggling EN/FR.
+- Styling is subtle, readable, mobile-friendly, and separate from search controls.
+
+2. Result count behaviour
+- No permanent result count in the default unfiltered state.
+- Contextual count appears only when a narrowing condition is active: search query, day filter, Sunday-obligation mode, or My Churches view.
+- English wording: “12 Masses found”.
+- French wording: “12 messes trouvées”.
+- Removed developer-style “x / total” public display.
+
+3. Empty-state UX
+- Empty results now show a card rather than a bare line or blank area.
+- English title/body:
+  No Masses found
+  Try another church name, area, or day.
+- French title/body:
+  Aucune messe trouvée
+  Essayez un autre nom d’église, lieu ou jour.
+- Recovery actions added:
+  Clear filters / Réinitialiser les filtres
+  Near Me / Prochaine messe près de vous
+  All Masses / Toutes les messes
+
+4. Bilingual polish
+- Trust strip, result count, empty-state card, recovery actions, About, and What’s New updated in both EN and FR.
+- Language choice remains persistent through localStorage.
+
+What was deliberately not changed:
+- Search matching logic.
+- Stopword logic.
+- Mass schedule data.
+- Parish/site hierarchy.
+- Coordinates.
+- Source URLs/excerpts.
+- Sunday-obligation eligibility.
+- Core layout architecture.
+
+UX verdict:
+The release improves public clarity and perceived trust while preserving the validated v20.4 functional base.
