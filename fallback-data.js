@@ -1,11 +1,11 @@
 window.MMF_FALLBACK_DATA = {
   "meta": {
-    "version": "20.6",
+    "version": "20.8",
     "built_at": "2026-04-26",
     "source_index": "https://dioceseportlouis.org/les-paroisses",
     "rows": 396,
-    "release_scope": "v20.6 service-worker migration hotfix over v20.5; no data, schedule, coordinate, source, search-logic, or Sunday-obligation changes.",
-    "app_version": "20.6"
+    "release_scope": "v20.8 More / Help / FAQ / About restoration hotfix over v20.7; no data, schedule, coordinate, source, search-logic, or Sunday-obligation changes.",
+    "app_version": "20.8"
   },
   "rows": [
     {

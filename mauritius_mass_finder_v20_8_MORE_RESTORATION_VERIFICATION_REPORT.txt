@@ -1,0 +1,60 @@
+MAURITIUS MASS FINDER v20.8 — MORE / HELP / FAQ / ABOUT RESTORATION VERIFICATION REPORT
+
+Baseline used:
+- mauritius_mass_finder_v20_7_visual_restoration_hotfix_github_pages_ready.zip
+
+Reference used:
+- mauritius_mass_finder_v17_2_release_gate_passed_github_pages_ready.zip
+
+Mission:
+- Restore the v17.2-style More bottom support experience into v20.7.
+- Preserve v20.7 visual restoration and core app behaviour.
+
+Restored sections:
+- More / Plus bottom navigation behaviour restored: the button now opens the Help panel and scrolls to the bottom support centre.
+- Help / Aide restored as a practical mini user guide.
+- FAQ / Questions fréquentes restored.
+- About / À propos restored.
+- Latest Version / Dernière version / What’s New restored and updated for v20.8.
+- Update guidance restored.
+- Visible Version v20.8 restored in the support section and footer.
+
+Files changed:
+- index.html: added bottom support centre with Help, FAQ, About, What’s New, Update and visible version areas.
+- app.js: updated APP_VERSION to 20.8; restored support-centre rendering; connected More / Plus and utility actions to restored bottom sections; added bilingual EN/FR content.
+- styles.css: added support-centre, details, help-box and responsive styling while preserving v20.7 visual style.
+- version.json: updated to 20.8.
+- manifest.json: updated to v20.8 description/version.
+- service-worker.js and sw.js: cache/version labels updated to v20.8.
+- data/masses.json and fallback-data.js: data unchanged, metadata corrected to v20.8 restoration scope.
+
+Version/cache updates:
+- APP_VERSION: 20.8
+- version.json: 20.8
+- service-worker cache: mauritius-mass-finder-v20.8
+- manifest version: 20.8
+- data metadata: 20.8
+
+QA checks passed:
+- Zip integrity: PASS.
+- JavaScript syntax: PASS for app.js, service-worker.js and sw.js.
+- Static file presence: PASS.
+- More / Plus target behaviour by code inspection: PASS — button opens Help panel and scrolls to #supportCenter.
+- Utility action behaviour by code inspection: PASS — Help, About, What’s New and Update route to restored bottom sections.
+- Bilingual restoration by code inspection: PASS — restored sections are rendered from EN/FR translation entries and update through the language-switch render path.
+- Data integrity vs v20.7: PASS — data rows unchanged from v20.7.
+- Core feature preservation by code inspection: PASS — search, filters, Near Me, My Churches, directions, source links, update flow and PWA files remain present.
+- PWA/offline versioning: PASS — cache labels updated to v20.8.
+
+Observed baseline data state preserved from v20.7:
+- actual JSON rows: 396
+- Mass rows: 379
+- unique parish labels/keys in data: 45
+- unique site labels/keys in data: 98
+
+Residual risks:
+- Browser-level iPhone installed-PWA testing was not executed inside this environment; behaviour was verified from files and code paths.
+- v20.8 restores the v17.2-style bottom support function and content categories, but it is merged into the v20.7 UI rather than being a byte-for-byte copy of v17.2.
+
+Final verdict:
+PASS — safe for deployment.

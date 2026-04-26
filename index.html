@@ -42,7 +42,35 @@
     <p id="resultCount" class="result-count" aria-live="polite" hidden></p>
     <section id="results" class="results" aria-live="polite"></section>
   </main>
-  <footer><span id="version"></span></footer>
+  <section id="supportCenter" class="supportCenter" aria-labelledby="supportTitle">
+    <div class="supportIntro">
+      <h2 id="supportTitle"></h2>
+      <p id="supportIntroText"></p>
+    </div>
+    <details class="aboutBox" id="helpPanel" open>
+      <summary id="helpPanelTitle"></summary>
+      <div class="helpBox" id="helpPanelBody"></div>
+    </details>
+    <details class="aboutBox" id="faqPanel">
+      <summary id="faqPanelTitle"></summary>
+      <div class="helpBox" id="faqPanelBody"></div>
+    </details>
+    <details class="aboutBox" id="aboutPanel">
+      <summary id="aboutPanelTitle"></summary>
+      <div class="helpBox" id="aboutPanelBody"></div>
+      <p class="aboutMeta"><span id="aboutVersionLabel"></span> <strong id="aboutVersion"></strong></p>
+    </details>
+    <details class="aboutBox" id="whatsNewPanel">
+      <summary id="whatsNewPanelTitle"></summary>
+      <div class="helpBox" id="whatsNewPanelBody"></div>
+    </details>
+    <details class="aboutBox" id="updatePanel">
+      <summary id="updatePanelTitle"></summary>
+      <div class="helpBox" id="updatePanelBody"></div>
+    </details>
+  </section>
+  <footer><span id="footerNote"></span><br><span id="version"></span></footer>
+
   <nav class="bottomNav" aria-label="Main navigation">
     <div class="bottomNavInner">
       <button class="navBtn active" id="navHome" type="button"><span aria-hidden="true">🏠</span><span id="navHomeLabel"></span></button>
