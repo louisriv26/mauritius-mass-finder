@@ -1,5 +1,5 @@
 
-const APP_VERSION = "20.5";
+const APP_VERSION = "20.6";
 const LAST_VERIFIED = "26 Apr 2026";
 const DAY_ORDER = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const DAY_LABELS = {
@@ -60,9 +60,9 @@ const I18N = {
     reportSubject:"Mauritius Mass Finder correction",
     reportBody:"Please describe the correction needed, including the church/parish, day, time, and source if known.",
     helpBody:`<p>Use search for a church, parish, locality, or common spelling variation. Accents, apostrophes, hyphens, œ/oe, and Saint/St variations are handled automatically.</p><p>By default, only confirmed Masses are shown. Tick “Include other celebrations” only when you also want non-Mass or ambiguous entries.</p><p>Use “Sunday obligation” for Sunday Masses and row-level Saturday eligibility generated from the at-or-after-15:00 rule, except explicitly excluded special cases such as infrequent non-vigil rows.</p>`,
-    aboutBody:`<p>This v20.5 release is a focused public-facing UX polish over v20.4. It improves the top trust signal, contextual result-count behaviour, and the no-results experience without changing Mass schedules, source data, coordinates, or Sunday-obligation logic.</p><p>Non-Mass and ambiguous entries remain hidden by default and can be shown with the “Include other celebrations” option.</p>`,
-    whatsNewBody:`<ul><li>Public technical counters removed from the main user flow.</li><li>New bilingual trust strip added near the top of the app.</li><li>Result count now appears only when a search or narrowing filter is active.</li><li>Friendly bilingual no-results card added with simple recovery actions.</li><li>v20.4 data, search rules, and Sunday-obligation logic preserved.</li></ul>`,
-    updateBody:`<p>When a new version is published, the app checks <code>version.json</code>. If an update banner appears, tap Refresh. Your saved churches should normally remain on the device.</p><p>If a phone remains stuck on an older version, close and reopen the app. On iPhone, removing and reinstalling the home-screen icon may be needed in rare stale-cache cases.</p>`
+    aboutBody:`<p>This v20.6 release is a service-worker migration hotfix over v20.5. It preserves the v20.5 trust strip, contextual result count, and no-results experience while fixing upgrades from older installed versions such as v17.2.</p><p>No Mass schedules, source data, coordinates, search rules, or Sunday-obligation logic were changed.</p>`,
+    whatsNewBody:`<ul><li>Service-worker migration hotfix added for users upgrading from older installed versions.</li><li>Legacy <code>sw.js</code> is now handled safely so old cached app files can be cleared.</li><li>v20.5 trust strip, contextual result count, and empty-state UX preserved.</li><li>No Mass schedule, source, coordinate, search-rule, or Sunday-obligation changes.</li></ul>`,
+    updateBody:`<p>When a new version is published, the app checks <code>version.json</code>. If an update banner appears, tap Refresh. The app now clears stale caches more aggressively before reloading.</p><p>Your saved churches should normally remain on the device because they are stored separately from the app files.</p>`
   },
   fr: {
     appTitle:"Trouver une Messe à Maurice",
@@ -117,9 +117,9 @@ const I18N = {
     reportSubject:"Correction Mauritius Mass Finder",
     reportBody:"Veuillez décrire la correction à faire, avec l’église/la paroisse, le jour, l’heure et la source si possible.",
     helpBody:`<p>Utilisez la recherche pour trouver une église, une paroisse, une localité ou une variante courante. Les accents, apostrophes, traits d’union, œ/oe et variantes Saint/St sont gérés automatiquement.</p><p>Par défaut, seules les messes confirmées sont affichées. Cochez « Inclure les autres célébrations » seulement si vous voulez aussi voir les entrées non confirmées comme messes.</p><p>Utilisez « Obligation dominicale » pour les messes du dimanche et les messes du samedi à partir de 15h00, sauf cas spécial explicitement exclu.</p>`,
-    aboutBody:`<p>Cette v20.5 est une amélioration UX ciblée par rapport à v20.4. Elle améliore le signal de confiance en haut de l’application, le compteur contextuel des résultats et l’affichage lorsqu’aucune messe n’est trouvée, sans changer les horaires, les sources, les coordonnées ou la logique d’obligation dominicale.</p><p>Les célébrations non-messes et les entrées ambiguës restent masquées par défaut et peuvent être affichées avec « Inclure les autres célébrations ».</p>`,
-    whatsNewBody:`<ul><li>Les compteurs techniques visibles ont été retirés du parcours principal.</li><li>Ajout d’un bandeau de confiance bilingue près du haut de l’application.</li><li>Le nombre de résultats s’affiche seulement lorsqu’une recherche ou un filtre restrictif est actif.</li><li>Ajout d’un message bilingue plus clair lorsqu’aucun résultat n’est trouvé.</li><li>Les données, règles de recherche et règles d’obligation dominicale de v20.4 sont conservées.</li></ul>`,
-    updateBody:`<p>Quand une nouvelle version est publiée, l’application vérifie <code>version.json</code>. Si une bannière apparaît, appuyez sur Actualiser. Vos églises enregistrées restent normalement sur l’appareil.</p><p>Si un téléphone reste bloqué sur une ancienne version, fermez puis rouvrez l’application. Sur iPhone, il peut parfois être nécessaire de supprimer puis réinstaller l’icône de l’écran d’accueil.</p>`
+    aboutBody:`<p>Cette v20.6 est un correctif de migration du service worker par rapport à v20.5. Elle conserve le bandeau de confiance, le compteur contextuel et l’affichage lorsqu’aucune messe n’est trouvée, tout en corrigeant la mise à jour depuis d’anciennes versions installées comme v17.2.</p><p>Aucun horaire, source, coordonnée, règle de recherche ou logique d’obligation dominicale n’a été changé.</p>`,
+    whatsNewBody:`<ul><li>Correctif de migration du service worker pour les utilisateurs venant d’anciennes versions installées.</li><li>L’ancien <code>sw.js</code> est maintenant géré afin de supprimer les anciens fichiers en cache.</li><li>Le bandeau de confiance, le compteur contextuel et l’état sans résultat de v20.5 sont conservés.</li><li>Aucun changement des horaires, sources, coordonnées, règles de recherche ou obligation dominicale.</li></ul>`,
+    updateBody:`<p>Quand une nouvelle version est publiée, l’application vérifie <code>version.json</code>. Si une bannière apparaît, appuyez sur Actualiser. L’application supprime maintenant les anciens caches de manière plus active avant de se recharger.</p><p>Vos églises enregistrées restent normalement sur l’appareil, car elles sont stockées séparément des fichiers de l’application.</p>`
   }
 };
 
@@ -399,6 +399,25 @@ async function loadData(){
   render();
   checkVersion();
 }
+async function forceAppRefresh(){
+  try{
+    if("serviceWorker" in navigator){
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(async reg => {
+        try{ if(reg.waiting) reg.waiting.postMessage({type:"SKIP_WAITING"}); }catch(e){}
+        try{ await reg.update(); }catch(e){}
+      }));
+    }
+    if(window.caches){
+      const keys = await caches.keys();
+      await Promise.all(keys.filter(k => /mmf|mass|mauritius/i.test(k)).map(k => caches.delete(k)));
+    }
+  }catch(e){}
+  const url = new URL(window.location.href);
+  url.searchParams.set("mmf_refresh", Date.now());
+  window.location.replace(url.toString());
+}
+
 async function checkVersion(){
   try{
     const res = await fetch(`version.json?v=${Date.now()}`, {cache:"no-store"});
@@ -406,7 +425,7 @@ async function checkVersion(){
     const v = await res.json();
     if(v.version && String(v.version) !== APP_VERSION){
       const bar = document.getElementById("updateBanner");
-      bar.innerHTML = `${esc(t("newversion"))} <button onclick="location.reload()">${esc(t("refresh"))}</button>`;
+      bar.innerHTML = `${esc(t("newversion"))} <button onclick="forceAppRefresh()">${esc(t("refresh"))}</button>`;
       bar.hidden = false;
     }
   }catch(e){}

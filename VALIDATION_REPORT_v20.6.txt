@@ -1,0 +1,47 @@
+MAURITIUS MASS FINDER v20.6 — VALIDATION REPORT
+
+Verdict: PASS
+
+Package checks:
+- index.html present at root.
+- app.js present at root.
+- styles.css present at root.
+- manifest.json present at root.
+- version.json present at root.
+- service-worker.js present at root.
+- sw.js present at root as intentional migration bridge.
+- .nojekyll present at root.
+- data/masses.json and data/masses.csv present.
+- fallback-data.js present.
+
+Version/cache checks:
+- APP_VERSION: 20.6.
+- version.json: 20.6.
+- manifest version: 20.6.
+- service-worker cache: mauritius-mass-finder-v20.6.
+- legacy migration worker cache marker: mauritius-mass-finder-v20.6-swjs-migration.
+
+Data integrity:
+- Rows: 396.
+- Parishes: 48.
+- Sites: 118.
+- Mass-visible rows: 379.
+- Duplicate technical keys: 0.
+- Invalid days: 0.
+- Invalid times: 0.
+- v20.6 rows hash equals v20.5 rows hash; data rows unchanged.
+
+Migration validation:
+- v17.2 registers sw.js.
+- v20.6 includes sw.js at root to update/replace legacy registrations.
+- migration sw.js clears old caches and navigates controlled windows with a cache-busting query.
+- v20.6 app registers service-worker.js for the current release.
+- service-worker.js uses v20.6 cache and treats index.html, app.js, styles.css, version.json, service-worker.js, and sw.js as never-stale network-first resources.
+
+Static syntax checks:
+- app.js passed JavaScript syntax check.
+- service-worker.js passed JavaScript syntax check.
+- sw.js passed JavaScript syntax check.
+
+Residual risk:
+- Real iOS PWA migration should still be live-tested on the installed v17.2 device because iOS service-worker update timing can be browser-controlled.
