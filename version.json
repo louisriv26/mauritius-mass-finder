@@ -1,6 +1,6 @@
 {
-  "version": "20.9",
-  "built_at": "2026-04-26",
-  "channel": "public-release-candidate",
-  "notes": "v20.9 hardens Sunday obligation logic: Sunday mode now includes Sunday Masses plus all Saturday Masses at or after 15:30. v20.8 More / Help / FAQ / About support restoration is preserved."
+  "version": "17.2",
+  "name": "Mauritius Mass Finder v17.2 Public Release Hardening Edition",
+  "released": "2026-04-25",
+  "notes": "Public-release hardening for trust, bilingual consistency, mobile usability, update reliability, and Sunday/Vigil clarity. Includes clearer Sunday/Saturday Vigil/Weekday badges, stronger exceptional-event caution, refined Help Center, and regression validation."
 }

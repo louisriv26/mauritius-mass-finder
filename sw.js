@@ -1,41 +1,22 @@
-/* Mauritius Mass Finder v20.9 legacy service-worker migration bridge.
-   Purpose: replace old v17.x sw.js registrations, clear stale caches, and force a network reload. */
-const MIGRATION_CACHE = 'mauritius-mass-finder-v20.9-swjs-migration';
-
-self.addEventListener('install', event => {
-  self.skipWaiting();
-  event.waitUntil(Promise.resolve());
-});
-
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(keys.map(key => caches.delete(key))))
-      .then(() => self.clients.claim())
-      .then(() => self.clients.matchAll({ type: 'window', includeUncontrolled: true }))
-      .then(clients => Promise.all(clients.map(client => {
-        try {
-          const url = new URL(client.url);
-          url.searchParams.set('mmf_migrated', Date.now());
-          return client.navigate(url.toString());
-        } catch (e) {
-          return Promise.resolve();
-        }
-      })))
-  );
-});
-
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
-});
-
-self.addEventListener('fetch', event => {
-  if (event.request.method !== 'GET') return;
-  const url = new URL(event.request.url);
-  if (url.origin !== location.origin) return;
-  event.respondWith(
-    fetch(event.request, { cache: 'no-store' })
-      .then(response => response)
-      .catch(() => caches.match(event.request).then(cached => cached || caches.match('index.html')))
-  );
+const CACHE='mmf-v17.2-public-release-hardening';
+const SHELL=['./','index.html','app.js','config.js','manifest.json','manifest.webmanifest','icon.svg','icons/icon-192.png','icons/icon-512.png','icons/icon-maskable-192.png','icons/icon-maskable-512.png','version.json'];
+const DATA_PATHS=['/data/masses.json','/data/masses.csv','/fallback-data.js'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('message',e=>{if(e.data&&e.data.type==='SKIP_WAITING') self.skipWaiting();});
+function pathKey(url){ return url.origin + url.pathname; }
+self.addEventListener('fetch',e=>{
+  const url=new URL(e.request.url);
+  if(url.pathname.endsWith('/version.json')){
+    e.respondWith(fetch(e.request,{cache:'no-store'}).catch(()=>caches.match('version.json'))); return;
+  }
+  if(DATA_PATHS.some(p=>url.pathname.endsWith(p))){
+    e.respondWith(fetch(e.request,{cache:'no-store'}).then(res=>{
+      const clone=res.clone(); caches.open(CACHE).then(c=>c.put(pathKey(url), clone)).catch(()=>{}); return res;
+    }).catch(()=>caches.match(pathKey(url)))); return;
+  }
+  e.respondWith(caches.match(e.request).then(c=>c||fetch(e.request).then(res=>{
+    if(e.request.method==='GET' && url.origin===location.origin){ const clone=res.clone(); caches.open(CACHE).then(cache=>cache.put(e.request,clone)).catch(()=>{}); }
+    return res;
+  }).catch(()=>caches.match('index.html'))));
 });
