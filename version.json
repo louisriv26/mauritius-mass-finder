@@ -1,6 +1,6 @@
 {
-  "version": "20.6",
+  "version": "20.7",
   "built_at": "2026-04-26",
   "channel": "public-release-candidate",
-  "notes": "v20.6 service-worker migration hotfix over v20.5. Adds legacy sw.js bridge for older installed versions such as v17.2 and strengthens cache/update refresh. No Mass schedule, source, coordinate, search-logic, Sunday-obligation, trust-strip, result-count, or empty-state behaviour changes."
+  "notes": "v20.7 restores the v17.2-style bottom navigation band and formatted quick-action cards, while retaining the v20.6 service-worker migration bridge. No Mass schedules, source data, coordinates, search rules, Sunday-obligation logic, trust strip, contextual result count, or empty-state copy changed."
 }

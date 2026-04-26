@@ -1,5 +1,5 @@
 
-const APP_VERSION = "20.6";
+const APP_VERSION = "20.7";
 const LAST_VERIFIED = "26 Apr 2026";
 const DAY_ORDER = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 const DAY_LABELS = {
@@ -22,6 +22,21 @@ const I18N = {
     about:"About",
     whatsNew:"What's New",
     update:"How to update",
+    quickTitle:"What do you need?",
+    quickHint:"One tap. No typing.",
+    qaNowTitle:"Find a Mass now",
+    qaNowText:"Show available Masses quickly.",
+    qaNearTitle:"Near me",
+    qaNearText:"Use your location and sort nearby results.",
+    qaSundayTitle:"Sunday obligation",
+    qaSundayText:"Show Sunday Masses and eligible Saturday Vigil Masses.",
+    qaMyTitle:"My Churches",
+    qaMyText:"Open your saved churches quickly.",
+    navHome:"Home",
+    navSearch:"Search",
+    navNear:"Near me",
+    navFav:"My Churches",
+    navMore:"More",
     source:"Source",
     directions:"Directions",
     save:"Save",
@@ -60,8 +75,8 @@ const I18N = {
     reportSubject:"Mauritius Mass Finder correction",
     reportBody:"Please describe the correction needed, including the church/parish, day, time, and source if known.",
     helpBody:`<p>Use search for a church, parish, locality, or common spelling variation. Accents, apostrophes, hyphens, œ/oe, and Saint/St variations are handled automatically.</p><p>By default, only confirmed Masses are shown. Tick “Include other celebrations” only when you also want non-Mass or ambiguous entries.</p><p>Use “Sunday obligation” for Sunday Masses and row-level Saturday eligibility generated from the at-or-after-15:00 rule, except explicitly excluded special cases such as infrequent non-vigil rows.</p>`,
-    aboutBody:`<p>This v20.6 release is a service-worker migration hotfix over v20.5. It preserves the v20.5 trust strip, contextual result count, and no-results experience while fixing upgrades from older installed versions such as v17.2.</p><p>No Mass schedules, source data, coordinates, search rules, or Sunday-obligation logic were changed.</p>`,
-    whatsNewBody:`<ul><li>Service-worker migration hotfix added for users upgrading from older installed versions.</li><li>Legacy <code>sw.js</code> is now handled safely so old cached app files can be cleared.</li><li>v20.5 trust strip, contextual result count, and empty-state UX preserved.</li><li>No Mass schedule, source, coordinate, search-rule, or Sunday-obligation changes.</li></ul>`,
+    aboutBody:`<p>This v20.7 release restores the v17.2-style bottom navigation band and formatted quick-action cards, while preserving the v20.6 service-worker migration hotfix and the v20.5 trust strip, contextual result count, and no-results experience.</p><p>No Mass schedules, source data, coordinates, search rules, or Sunday-obligation logic were changed.</p>`,
+    whatsNewBody:`<ul><li>Restored the v17.2-style bottom navigation band.</li><li>Restored the formatted quick-action cards.</li><li>Service-worker migration hotfix retained for users upgrading from older installed versions.</li><li>Legacy <code>sw.js</code> is now handled safely so old cached app files can be cleared.</li><li>v20.5 trust strip, contextual result count, and empty-state UX preserved.</li><li>No Mass schedule, source, coordinate, search-rule, or Sunday-obligation changes.</li></ul>`,
     updateBody:`<p>When a new version is published, the app checks <code>version.json</code>. If an update banner appears, tap Refresh. The app now clears stale caches more aggressively before reloading.</p><p>Your saved churches should normally remain on the device because they are stored separately from the app files.</p>`
   },
   fr: {
@@ -79,6 +94,21 @@ const I18N = {
     about:"À propos",
     whatsNew:"Nouveautés",
     update:"Comment mettre à jour",
+    quickTitle:"Que cherchez-vous ?",
+    quickHint:"Un geste. Sans taper.",
+    qaNowTitle:"Trouver une messe maintenant",
+    qaNowText:"Afficher rapidement les messes disponibles.",
+    qaNearTitle:"Près de moi",
+    qaNearText:"Utiliser votre position et trier les résultats proches.",
+    qaSundayTitle:"Obligation dominicale",
+    qaSundayText:"Afficher les messes du dimanche et les messes anticipées éligibles.",
+    qaMyTitle:"Mes églises",
+    qaMyText:"Ouvrir rapidement vos églises enregistrées.",
+    navHome:"Accueil",
+    navSearch:"Recherche",
+    navNear:"Près de moi",
+    navFav:"Mes églises",
+    navMore:"Plus",
     source:"Source",
     directions:"Itinéraire",
     save:"Enregistrer",
@@ -117,8 +147,8 @@ const I18N = {
     reportSubject:"Correction Mauritius Mass Finder",
     reportBody:"Veuillez décrire la correction à faire, avec l’église/la paroisse, le jour, l’heure et la source si possible.",
     helpBody:`<p>Utilisez la recherche pour trouver une église, une paroisse, une localité ou une variante courante. Les accents, apostrophes, traits d’union, œ/oe et variantes Saint/St sont gérés automatiquement.</p><p>Par défaut, seules les messes confirmées sont affichées. Cochez « Inclure les autres célébrations » seulement si vous voulez aussi voir les entrées non confirmées comme messes.</p><p>Utilisez « Obligation dominicale » pour les messes du dimanche et les messes du samedi à partir de 15h00, sauf cas spécial explicitement exclu.</p>`,
-    aboutBody:`<p>Cette v20.6 est un correctif de migration du service worker par rapport à v20.5. Elle conserve le bandeau de confiance, le compteur contextuel et l’affichage lorsqu’aucune messe n’est trouvée, tout en corrigeant la mise à jour depuis d’anciennes versions installées comme v17.2.</p><p>Aucun horaire, source, coordonnée, règle de recherche ou logique d’obligation dominicale n’a été changé.</p>`,
-    whatsNewBody:`<ul><li>Correctif de migration du service worker pour les utilisateurs venant d’anciennes versions installées.</li><li>L’ancien <code>sw.js</code> est maintenant géré afin de supprimer les anciens fichiers en cache.</li><li>Le bandeau de confiance, le compteur contextuel et l’état sans résultat de v20.5 sont conservés.</li><li>Aucun changement des horaires, sources, coordonnées, règles de recherche ou obligation dominicale.</li></ul>`,
+    aboutBody:`<p>Cette v20.7 rétablit le bandeau de navigation inférieur et les cartes d’actions rapides au style v17.2, tout en conservant le correctif de migration du service worker de v20.6, le bandeau de confiance de v20.5, le compteur contextuel et l’affichage sans résultat.</p><p>Aucun horaire, source, coordonnée, règle de recherche ou logique d’obligation dominicale n’a été changé.</p>`,
+    whatsNewBody:`<ul><li>Rétablissement du bandeau de navigation inférieur au style v17.2.</li><li>Rétablissement des cartes d’actions rapides formatées.</li><li>Correctif de migration du service worker conservé pour les utilisateurs venant d’anciennes versions installées.</li><li>L’ancien <code>sw.js</code> est maintenant géré afin de supprimer les anciens fichiers en cache.</li><li>Le bandeau de confiance, le compteur contextuel et l’état sans résultat de v20.5 sont conservés.</li><li>Aucun changement des horaires, sources, coordonnées, règles de recherche ou obligation dominicale.</li></ul>`,
     updateBody:`<p>Quand une nouvelle version est publiée, l’application vérifie <code>version.json</code>. Si une bannière apparaît, appuyez sur Actualiser. L’application supprime maintenant les anciens caches de manière plus active avant de se recharger.</p><p>Vos églises enregistrées restent normalement sur l’appareil, car elles sont stockées séparément des fichiers de l’application.</p>`
   }
 };
@@ -137,6 +167,7 @@ let state = {
 };
 
 function t(k){ return (I18N[state.lang] && I18N[state.lang][k]) || I18N.en[k] || k; }
+function setText(id, value){ const el=document.getElementById(id); if(el) el.textContent=value; }
 function esc(s){ return String(s ?? "").replace(/[&<>"']/g, m => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[m])); }
 function normalize(s){
   return String(s || "")
@@ -207,6 +238,12 @@ function distanceBadge(r){
 function sourceBasis(r){
   return (r.vigil_status === "confirmed_vigil" || r.vigil_status === "rule_based_eligible") && r.vigil_source_basis ? `<span class="basis">${esc(r.vigil_source_basis)}</span>` : "";
 }
+function updateBottomNavActive(active){
+  const id = active || (state.nearMode ? "navNear" : state.view === "my" ? "navFav" : "navHome");
+  document.querySelectorAll(".navBtn").forEach(btn => btn.classList.toggle("active", btn.id === id));
+}
+function scrollToSelector(selector){ document.querySelector(selector)?.scrollIntoView({behavior:"smooth", block:"start"}); }
+function showNow(){ state.query=""; state.day=""; state.sunday=false; state.view="all"; state.nearMode=false; const search=document.getElementById("search"); if(search) search.value=""; render(); updateBottomNavActive("navHome"); scrollToSelector("#results"); }
 function renderDayOptions(){
   const day = document.getElementById("day");
   day.innerHTML = ["", ...DAY_ORDER].map(d => `<option value="${esc(d)}"${state.day === d ? " selected" : ""}>${esc(DAY_LABELS[state.lang][d])}</option>`).join("");
@@ -220,8 +257,22 @@ function render(){
   document.querySelector(".controls").setAttribute("aria-label", t("searchFilters"));
   document.getElementById("includeLabel").textContent = t("include");
   document.getElementById("sundayBtn").textContent = t("sunday");
-  document.getElementById("nearBtn").textContent = state.nearMode ? t("nearActive") : t("near");
-  document.getElementById("myBtn").textContent = state.view === "my" ? t("allResults") : t("my");
+  setText("quickTitle", t("quickTitle"));
+  setText("quickHint", t("quickHint"));
+  setText("qaNowTitle", t("qaNowTitle"));
+  setText("qaNowText", t("qaNowText"));
+  setText("qaNearTitle", state.nearMode ? t("nearActive") : t("qaNearTitle"));
+  setText("qaNearText", t("qaNearText"));
+  setText("qaSundayTitle", t("qaSundayTitle"));
+  setText("qaSundayText", t("qaSundayText"));
+  setText("qaMyTitle", state.view === "my" ? t("allResults") : t("qaMyTitle"));
+  setText("qaMyText", t("qaMyText"));
+  setText("navHomeLabel", t("navHome"));
+  setText("navSearchLabel", t("navSearch"));
+  setText("navNearLabel", t("navNear"));
+  setText("navFavLabel", t("navFav"));
+  setText("navMoreLabel", t("navMore"));
+  document.querySelector(".bottomNav")?.setAttribute("aria-label", state.lang === "fr" ? "Navigation principale" : "Main navigation");
   document.getElementById("helpBtn").textContent = t("help");
   document.getElementById("aboutBtn").textContent = t("about");
   document.getElementById("whatsNewBtn").textContent = t("whatsNew");
@@ -229,8 +280,10 @@ function render(){
   document.getElementById("version").textContent = `${t("version")} ${APP_VERSION} · ${t("last")} ${LAST_VERIFIED}`;
   document.getElementById("langBtn").textContent = state.lang === "en" ? "Français" : "English";
   document.getElementById("sundayBtn").classList.toggle("active", state.sunday);
+  document.getElementById("qaSunday")?.classList.toggle("active", state.sunday);
   document.getElementById("nearBtn").classList.toggle("active", state.nearMode);
   document.getElementById("myBtn").classList.toggle("active", state.view === "my");
+  updateBottomNavActive();
   renderDayOptions();
 
   const list = visibleRows();
@@ -370,14 +423,22 @@ function setup(){
   document.getElementById("search").onkeydown = e => { if(e.key === "Enter"){ state.query = e.target.value; render(); } };
   document.getElementById("day").onchange = e => { state.day = e.target.value; render(); };
   document.getElementById("include").onchange = e => { state.includeOther = e.target.checked; render(); };
-  document.getElementById("sundayBtn").onclick = () => { state.sunday = !state.sunday; render(); };
+  document.getElementById("sundayBtn").onclick = () => { state.sunday = !state.sunday; state.nearMode=false; state.view="all"; render(); };
+  document.getElementById("qaSunday").onclick = () => { state.sunday = true; state.nearMode=false; state.view="all"; state.day=""; render(); updateBottomNavActive("navHome"); scrollToSelector("#results"); };
+  document.getElementById("qaNow").onclick = showNow;
   document.getElementById("langBtn").onclick = () => { state.lang = state.lang === "en" ? "fr" : "en"; localStorage.setItem("mmf_lang", state.lang); render(); };
-  document.getElementById("myBtn").onclick = () => { state.view = state.view === "my" ? "all" : "my"; render(); };
+  document.getElementById("myBtn").onclick = () => { state.view = state.view === "my" ? "all" : "my"; state.nearMode=false; render(); updateBottomNavActive(state.view === "my" ? "navFav" : "navHome"); scrollToSelector("#results"); };
   document.getElementById("nearBtn").onclick = () => {
     if(!navigator.geolocation){ notify(t("locUnsupported")); return; }
+    state.query = "";
+    state.day = "";
+    state.sunday = false;
+    state.view = "all";
+    const search = document.getElementById("search");
+    if(search) search.value = "";
     notify(t("locRequest"));
     navigator.geolocation.getCurrentPosition(
-      p => { state.position = { latitude:p.coords.latitude, longitude:p.coords.longitude }; state.day = ""; state.nearMode = true; notify(t("locReady")); render(); },
+      p => { state.position = { latitude:p.coords.latitude, longitude:p.coords.longitude }; state.nearMode = true; updateBottomNavActive("navNear"); notify(t("locReady")); render(); },
       () => { state.nearMode = false; notify(t("locDenied")); render(); },
       { enableHighAccuracy:false, timeout:10000, maximumAge:300000 }
     );
@@ -386,6 +447,11 @@ function setup(){
   document.getElementById("aboutBtn").onclick = () => openModal(t("about"), t("aboutBody"));
   document.getElementById("whatsNewBtn").onclick = () => openModal(t("whatsNew"), t("whatsNewBody"));
   document.getElementById("updateBtn").onclick = () => openModal(t("update"), t("updateBody"));
+  document.getElementById("navHome")?.addEventListener("click",()=>{showNow(); updateBottomNavActive("navHome");});
+  document.getElementById("navSearch")?.addEventListener("click",()=>{updateBottomNavActive("navSearch"); scrollToSelector(".controls"); setTimeout(()=>document.getElementById("search")?.focus(),250);});
+  document.getElementById("navNear")?.addEventListener("click",()=>{updateBottomNavActive("navNear"); document.getElementById("nearBtn")?.click();});
+  document.getElementById("navFav")?.addEventListener("click",()=>{if(state.view!=="my") document.getElementById("myBtn")?.click(); else {updateBottomNavActive("navFav"); scrollToSelector("#results");}});
+  document.getElementById("navMore")?.addEventListener("click",()=>{updateBottomNavActive("navMore"); scrollToSelector("footer");});
 }
 async function loadData(){
   let data = null;

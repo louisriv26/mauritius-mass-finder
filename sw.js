@@ -1,6 +1,6 @@
-/* Mauritius Mass Finder v20.6 legacy service-worker migration bridge.
+/* Mauritius Mass Finder v20.7 legacy service-worker migration bridge.
    Purpose: replace old v17.x sw.js registrations, clear stale caches, and force a network reload. */
-const MIGRATION_CACHE = 'mauritius-mass-finder-v20.6-swjs-migration';
+const MIGRATION_CACHE = 'mauritius-mass-finder-v20.7-swjs-migration';
 
 self.addEventListener('install', event => {
   self.skipWaiting();

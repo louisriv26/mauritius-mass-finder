@@ -23,19 +23,35 @@
       <button id="sundayBtn" type="button"></button>
       <label class="check"><input id="include" type="checkbox"> <span id="includeLabel"></span></label>
     </section>
-    <section class="quick" aria-label="Quick actions">
-      <button id="nearBtn" type="button"></button>
-      <button id="myBtn" type="button"></button>
-      <button id="helpBtn" type="button"></button>
-      <button id="aboutBtn" type="button"></button>
-      <button id="whatsNewBtn" type="button"></button>
-      <button id="updateBtn" type="button"></button>
+    <section class="quickActions" id="quickActions" aria-label="Quick actions">
+      <div class="sectionHead"><h2 id="quickTitle"></h2><span class="small" id="quickHint"></span></div>
+      <div class="quickGrid">
+        <button class="quickCard primaryQuick" id="qaNow" type="button"><div class="quickIcon">⏰</div><div class="quickTitle" id="qaNowTitle"></div><div class="quickText" id="qaNowText"></div></button>
+        <button class="quickCard" id="nearBtn" type="button"><div class="quickIcon">📍</div><div class="quickTitle" id="qaNearTitle"></div><div class="quickText" id="qaNearText"></div></button>
+        <button class="quickCard" id="qaSunday" type="button"><div class="quickIcon">☀️</div><div class="quickTitle" id="qaSundayTitle"></div><div class="quickText" id="qaSundayText"></div></button>
+        <button class="quickCard" id="myBtn" type="button"><div class="quickIcon">⭐</div><div class="quickTitle" id="qaMyTitle"></div><div class="quickText" id="qaMyText"></div></button>
+      </div>
+      <div class="utilityActions" aria-label="More actions">
+        <button id="helpBtn" type="button"></button>
+        <button id="aboutBtn" type="button"></button>
+        <button id="whatsNewBtn" type="button"></button>
+        <button id="updateBtn" type="button"></button>
+      </div>
     </section>
     <p id="trustStrip" class="trust-strip"></p>
     <p id="resultCount" class="result-count" aria-live="polite" hidden></p>
     <section id="results" class="results" aria-live="polite"></section>
   </main>
   <footer><span id="version"></span></footer>
+  <nav class="bottomNav" aria-label="Main navigation">
+    <div class="bottomNavInner">
+      <button class="navBtn active" id="navHome" type="button"><span aria-hidden="true">🏠</span><span id="navHomeLabel"></span></button>
+      <button class="navBtn" id="navSearch" type="button"><span aria-hidden="true">🔍</span><span id="navSearchLabel"></span></button>
+      <button class="navBtn" id="navNear" type="button"><span aria-hidden="true">📍</span><span id="navNearLabel"></span></button>
+      <button class="navBtn" id="navFav" type="button"><span aria-hidden="true">⭐</span><span id="navFavLabel"></span></button>
+      <button class="navBtn" id="navMore" type="button"><span aria-hidden="true">⚙️</span><span id="navMoreLabel"></span></button>
+    </div>
+  </nav>
   <div id="modal" hidden></div>
   <script src="fallback-data.js"></script>
   <script src="app.js"></script>
