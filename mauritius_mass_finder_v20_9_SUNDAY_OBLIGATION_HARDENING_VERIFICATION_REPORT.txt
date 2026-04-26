@@ -1,0 +1,63 @@
+MAURITIUS MASS FINDER v20.9 — EXPERT CHECK / CORRECTED VERIFICATION REPORT
+
+Baseline checked:
+- mauritius_mass_finder_v20_9_sunday_obligation_hardening_github_pages_ready.zip
+
+Expert check result:
+- Initial v20.9 package mostly worked, but one Saturday 17:00 Mass row was still marked non-vigil / not Sunday-obligation eligible.
+- This contradicted the requested rule that all Saturday Masses at or after 15:30 should be treated as Sunday Vigil eligible.
+- Corrected row: Saint-Sauveur / Saint-Marc, Flic-en-Flac, Saturday 17:00, Third Saturday only.
+
+Correction applied:
+- Set sunday_obligation_eligible = true for the affected Saturday 17:00 Mass row.
+- Set vigil_status = rule_based_eligible.
+- Updated vigil_source_basis to the v20.9 15:30 rule.
+- Updated JSON, CSV and fallback embedded data.
+- Removed misleading “unless explicitly excluded” wording from app text where applicable.
+
+Final data checks:
+- Total rows: 396
+- Mass rows: 379
+- Other / ambiguous rows: 17
+- Parish IDs: 48
+- Site IDs: 118
+- Missing coordinates: 0
+- Invalid days: 0
+- Invalid time formats: 0
+- Duplicate technical keys: 0
+- Sunday-obligation rule violations after correction: 0
+
+Sunday-obligation rule verified:
+- Sunday Masses are eligible.
+- Saturday Masses at or after 15:30 are eligible.
+- Saturday Masses before 15:30 are not eligible.
+- Non-Mass / other-celebration rows are not made eligible by the rule.
+
+Functional checks:
+- JavaScript syntax passed for app.js.
+- service-worker.js syntax passed.
+- sw.js syntax passed.
+- More / Help / FAQ / About support centre remains present in index.html.
+- Version metadata aligned to v20.9.
+- Service-worker cache aligned to v20.9.
+- GitHub Pages package structure present.
+
+Files verified/preserved:
+- index.html
+- app.js
+- styles.css
+- data/masses.json
+- data/masses.csv
+- fallback-data.js
+- manifest.json
+- version.json
+- service-worker.js
+- sw.js
+- icons/
+- .nojekyll
+
+Residual caveat:
+- The 15:30 Saturday rule is a practical rule chosen for the app. It is rule-based eligibility, not necessarily a direct diocesan wording claim for each Saturday Mass.
+
+Final verdict:
+PASS — safe for deployment after correction.

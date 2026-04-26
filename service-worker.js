@@ -1,4 +1,4 @@
-const CACHE = 'mauritius-mass-finder-v20.8';
+const CACHE = 'mauritius-mass-finder-v20.9';
 const CORE = [
   './',
   'index.html',

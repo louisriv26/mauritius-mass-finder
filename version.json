@@ -1,6 +1,6 @@
 {
-  "version": "20.8",
+  "version": "20.9",
   "built_at": "2026-04-26",
   "channel": "public-release-candidate",
-  "notes": "v20.8 restores the v17.2 More bottom support experience: Help/User Guide, FAQ, About, Latest Version, update guidance and visible version number, while preserving v20.7 visual restoration and core app behaviour."
+  "notes": "v20.9 hardens Sunday obligation logic: Sunday mode now includes Sunday Masses plus all Saturday Masses at or after 15:30. v20.8 More / Help / FAQ / About support restoration is preserved."
 }

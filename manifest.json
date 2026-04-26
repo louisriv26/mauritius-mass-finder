@@ -1,7 +1,7 @@
 {
   "name": "Mauritius Mass Finder",
   "short_name": "Mass Finder",
-  "description": "Mauritius Mass Finder v20.8 More / Help / FAQ / About restoration hotfix",
+  "description": "Mauritius Mass Finder v20.9 Sunday obligation hardening",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f7f6f2",
@@ -30,6 +30,6 @@
       "purpose": "maskable"
     }
   ],
-  "version": "20.8",
+  "version": "20.9",
   "scope": "./"
 }
