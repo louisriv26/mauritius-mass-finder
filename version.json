@@ -1,8 +1,8 @@
 {
-  "version": "26.1.4",
-  "release_name": "Runtime Data Note Cleanup Release",
-  "build": "2026-05-06",
+  "version": "27.1.1",
+  "release_name": "Church Schedule Wording Alignment Patch",
+  "build": "2026-05-08",
   "data_version": "2026-05-05",
-  "cache_version": "mmf-v26-1-4",
-  "notes": "Stale runtime data references removed; coordinate precision summary regenerated from actual rows; deployable zip cleaned."
+  "cache_version": "mmf-v27-1-1",
+  "notes": "Aligns the detail action wording with the actual site-level schedule behaviour: Church schedule / Horaires de cette église. Preserves shareable state, hardening fixes, detail clarity, FAQ, source links, search, filters, Near Me, bilingual mode, update flow, and PWA support."
 }
