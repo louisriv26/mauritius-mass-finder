@@ -1,8 +1,8 @@
 {
-  "version": "27.1.16",
-  "release_name": "Saturday Anticipated Sunday Mass Rule",
-  "build": "2026-05-22",
+  "version": "27.2.17",
+  "release_name": "Occurrence Semantics Patch",
+  "build": "2026-05-28",
   "data_version": "2026-05-22",
-  "cache_version": "mmf-v27-1-16",
-  "notes": "Mauritius rule update: Saturday Masses from 3:00 pm are generally anticipated Sunday Masses and are included in Sunday searches and filters. Metadata, cache, fallback data, and runtime files aligned."
+  "cache_version": "mmf-v27-2-17",
+  "notes": "Occurrence semantics patch. Grand-Baie English Mass is first-Sunday-only; first-Friday semantic search excludes exposition-note weekly rows and except-first-Friday rows."
 }

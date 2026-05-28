@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mauritius Mass Finder v27.1.16</title>
+<title>Mauritius Mass Finder v27.2.17</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#6f2c2c">
 <meta name="description" content="Find a Catholic Mass quickly anywhere in Mauritius.">
@@ -30,20 +30,21 @@
     <label class="sr-only" for="searchInput" id="searchLabel">Search</label>
     <div class="searchBox" id="searchBox">
       <span aria-hidden="true">🔍</span>
-      <input id="searchInput" autocomplete="off" inputmode="search" placeholder="afternoon Curepipe, 18h, Saint Jean…">
+      <input id="searchInput" autocomplete="off" inputmode="search" placeholder="afternoon Mass Curepipe, 18h, Saint Jean…">
       <button id="clearSearch" type="button">Clear</button>
     </div>
-    <div class="searchHint" id="searchHint">Try: afternoon Curepipe</div>
+    <div class="searchHint" id="searchHint">Try: afternoon Mass Curepipe</div>
     <div class="intentChips" id="intentChips" aria-live="polite"></div>
   </header>
 
   <div class="quickScroller" id="quickScroller">
     <nav class="quickRow" id="quickRow" aria-label="Quick actions">
-      <button class="pill" data-action="today" type="button"><span data-t="quickToday">Today</span></button>
-      <button class="pill" data-action="tomorrow" type="button"><span data-t="quickTomorrow">Tomorrow</span></button>
-      <button class="pill" data-action="afternoon" type="button">☀️ <span data-t="quickAfternoon">Afternoon</span></button>
-      <button class="pill" data-action="near" type="button">📍 <span data-t="quickNear">Near me</span></button>
-      <button class="pill secondary" data-action="saved" type="button">⭐ <span data-t="quickSaved">My Churches</span></button>
+      <button class="pill" data-action="today" type="button" aria-pressed="false"><span data-t="quickToday">Today</span></button>
+      <button class="pill" data-action="tomorrow" type="button" aria-pressed="false"><span data-t="quickTomorrow">Tomorrow</span></button>
+      <button class="pill" data-action="morning" type="button" aria-pressed="false">🌅 <span data-t="quickMorning">Morning</span></button>
+      <button class="pill" data-action="afternoon" type="button" aria-pressed="false">☀️ <span data-t="quickAfternoon">Afternoon</span></button>
+      <button class="pill" data-action="near" type="button" aria-pressed="false">📍 <span data-t="quickNear">Near me</span></button>
+      <button class="pill secondary" data-action="saved" type="button" aria-pressed="false">⭐ <span data-t="quickSaved">My Churches</span></button>
     </nav>
     <div class="scrollCue" id="quickScrollCue" aria-hidden="true">→</div>
   </div>
@@ -53,7 +54,7 @@
     <section id="modeHero" aria-live="polite"></section>
     <div class="headLine" id="resultsHead">
       <div><div class="contextLabel" id="contextLabel"></div><div class="resultCount" id="resultCount"></div></div>
-      <button class="btn" id="openFilters" type="button" aria-haspopup="dialog" aria-controls="filterSheet" aria-expanded="false">⚙ <span data-t="filters">Filters</span></button>
+      <button class="btn filterBtn" id="openFilters" type="button" aria-haspopup="dialog" aria-controls="filterSheet" aria-expanded="false">⚙ <span data-t="filters">Filters</span><span class="filterCount" id="filterCount" hidden></span></button>
     </div>
     <section id="results" class="resultsGrid" aria-live="polite"></section>
     <section id="morePanel" class="morePanel" hidden></section>
@@ -64,22 +65,24 @@
 <div class="sheetBackdrop" id="sheetBackdrop"></div>
 <section class="sheet" id="filterSheet" aria-label="Filters" aria-modal="true" aria-hidden="true" role="dialog" tabindex="-1">
   <div class="grab"></div>
-  <div class="sheetHead"><h2 id="filterTitle">Filters</h2><button class="btn icon" id="closeFilters" type="button">×</button></div>
-  <div class="filterGroup"><div class="filterLabel" id="dayLabel">Day</div><div class="tagRow" id="dayTags"></div></div>
-  <div class="filterGroup"><div class="filterLabel" id="timeLabel">Time of day</div><div class="tagRow" id="timeTags"></div></div>
-  <div class="filterGroup"><div class="filterLabel" id="regionLabel">Region</div><div class="tagRow" id="regionTags"></div></div>
-  <div class="filterGroup"><div class="filterLabel" id="typeLabel">Type</div><div class="tagRow" id="typeTags"></div></div>
-  <button class="btn primary" id="applyFilters" type="button" style="width:100%;margin-top:8px">Show results</button>
+  <div class="sheetHead"><h2 id="filterTitle">Filters</h2><button class="btn icon" id="closeFilters" type="button" aria-label="Close filters">×</button></div>
+  <div class="sheetBody">
+    <div class="filterGroup"><div class="filterLabel" id="dayLabel">Day</div><div class="tagRow" id="dayTags"></div></div>
+    <div class="filterGroup"><div class="filterLabel" id="timeLabel">Time of day</div><div class="tagRow" id="timeTags"></div></div>
+    <div class="filterGroup"><div class="filterLabel" id="regionLabel">Region</div><div class="tagRow" id="regionTags"></div></div>
+    <div class="filterGroup"><div class="filterLabel" id="typeLabel">Type</div><div class="tagRow" id="typeTags"></div></div>
+  </div>
+  <div class="sheetFooter"><button class="btn primary" id="applyFilters" type="button">Show results</button></div>
 </section>
 <section class="sheet detailSheet" id="detailSheet" aria-label="Mass details" aria-modal="true" aria-hidden="true" role="dialog" tabindex="-1">
   <div class="grab"></div>
-  <div class="sheetHead"><h2 id="detailTitle" data-t="detailTitle">Mass details</h2><button class="btn icon" id="closeDetail" type="button">×</button></div>
+  <div class="sheetHead"><h2 id="detailTitle" data-t="detailTitle">Mass details</h2><button class="btn icon" id="closeDetail" type="button" aria-label="Close details">×</button></div>
   <div id="detailSheetBody"></div>
 </section>
 
-<div class="updateBanner" id="updateBanner"><div><b id="updateTitle">New version available</b><div id="updateText">Update to get the latest version.</div><button class="linkBtn" id="updateHelp" type="button">Having trouble updating?</button></div><button class="btn primary" id="updateRefresh" type="button">Update now</button><button class="btn" id="updateDismiss" type="button">Later</button></div>
+<div class="updateBanner" id="updateBanner" role="status" aria-live="polite"><div><b id="updateTitle">New version available</b><div id="updateText">Update to get the latest version.</div><button class="linkBtn" id="updateHelp" type="button">Having trouble updating?</button></div><button class="btn primary" id="updateRefresh" type="button">Update now</button><button class="btn" id="updateDismiss" type="button">Later</button></div>
 <div class="toast" id="toast" role="status"></div>
-<nav class="bottomNav" aria-label="Main navigation"><div class="bottomNavInner compactNav">
+<nav class="bottomNav" id="bottomNav" aria-label="Main navigation"><div class="bottomNavInner compactNav">
   <button class="navBtn active" data-nav="home" type="button"><span>🏠</span><span data-t="navHome">Home</span></button>
   <button class="navBtn" data-nav="saved" type="button"><span>⭐</span><span data-t="navSaved">My Churches</span></button>
   <button class="navBtn" data-nav="near" type="button"><span>📍</span><span data-t="navNear">Near me</span></button>
