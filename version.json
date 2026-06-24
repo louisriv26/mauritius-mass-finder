@@ -1,8 +1,8 @@
 {
-  "version": "27.3.3",
-  "release_name": "Bug Fixes",
+  "version": "27.3.4",
+  "release_name": "Phase 3 Modularisation",
   "build": "2026-06-24",
   "data_version": "2026-06-21",
-  "cache_version": "mmf-v27-3-3",
-  "notes": "rel() no longer shows '0m' when minutes are zero; dead code path removed; 23 unused translation keys removed; My Churches preview excludes past-today times."
+  "cache_version": "mmf-v27-3-4",
+  "notes": "app.js split into 9 ES modules (constants, translations, state, utils, geo, search, render, sheets, sw-bridge). No behaviour changes."
 }
