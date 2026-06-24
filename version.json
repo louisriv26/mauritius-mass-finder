@@ -1,8 +1,8 @@
 {
-  "version": "27.3.5",
-  "release_name": "Phase 4 Occurrence Semantics",
+  "version": "27.3.3r",
+  "release_name": "Rollback to v27.3.3",
   "build": "2026-06-24",
   "data_version": "2026-06-21",
-  "cache_version": "mmf-v27-3-5",
-  "notes": "Results grid now shows 'Already under way' section below upcoming Masses. In-progress Masses (within grace period) are visually separated rather than deprioritised."
+  "cache_version": "mmf-v27-3-3r",
+  "notes": "rel() no longer shows '0m' when minutes are zero; dead code path removed; 23 unused translation keys removed; My Churches preview excludes past-today times."
 }
