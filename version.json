@@ -1,9 +1,8 @@
 {
-  "version": "27.3.3r",
-  "release_name": "Rollback to v27.3.3",
-  "build": "2026-06-24",
+  "version": "27.2.30",
+  "release_name": "Canonical Obligation-Day Data Integrity Patch",
+  "build": "2026-06-21",
   "data_version": "2026-06-21",
-  "cache_version": "mmf-v27-3-3s",
-  "notes": "rel() no longer shows '0m' when minutes are zero; dead code path removed; 23 unused translation keys removed; My Churches preview excludes past-today times."
+  "cache_version": "mmf-v27-2-30",
+  "notes": "Mechanical data-integrity patch: canonicalises obligation_day to Sunday for three Sunday Mass rows. No schedule, source, coordinate, classification, search or UI change."
 }
-
