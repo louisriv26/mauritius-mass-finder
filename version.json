@@ -1,8 +1,9 @@
-{
+﻿{
   "version": "27.3.3r",
   "release_name": "Rollback to v27.3.3",
   "build": "2026-06-24",
   "data_version": "2026-06-21",
-  "cache_version": "mmf-v27-3-3r",
+  "cache_version": "mmf-v27-3-3s",
   "notes": "rel() no longer shows '0m' when minutes are zero; dead code path removed; 23 unused translation keys removed; My Churches preview excludes past-today times."
 }
+
