@@ -1,4 +1,4 @@
-﻿
+
 'use strict';
 const APP_VERSION='27.3.3r';
 const CACHE_NAME='mmf-v27-3-3';
