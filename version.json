@@ -1,8 +1,8 @@
 {
-  "version": "27.2.26",
-  "release_name": "Stale Metadata Final Cleanup",
-  "build": "2026-06-04",
-  "data_version": "2026-06-04",
-  "cache_version": "mmf-v27-2-26",
-  "notes": "Stale metadata final cleanup release. Preserves current data, search, Near Me, My Churches, bilingual mode, update flow, offline/fallback support, and Saint-Paul Mass/exposition separation."
+  "version": "27.3.0",
+  "release_name": "Source-Confirmed Schedule Corrections",
+  "build": "2026-06-21",
+  "data_version": "2026-06-21",
+  "cache_version": "mmf-v27-3-0",
+  "notes": "Source-confirmed schedule correction: Saint-Vincent-de-Paul Sunday Mass corrected from 09:00 to 09:30, and an inapplicable Saturday-obligation context note removed from the Friday Notre-Dame-de-la-Paix Mass. No UI, search-logic, coordinate, classification, or other schedule change."
 }

@@ -1,7 +1,7 @@
 {
   "name": "Mauritius Mass Finder",
   "short_name": "Mass Finder",
-  "description": "Mauritius Mass Finder — targeted QA cleanup release.",
+  "description": "Find a Catholic Mass quickly anywhere in Mauritius.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
@@ -35,6 +35,6 @@
       "purpose": "maskable"
     }
   ],
-  "version": "27.2.26",
+  "version": "27.3.0",
   "id": "./"
 }

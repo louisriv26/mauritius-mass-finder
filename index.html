@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mauritius Mass Finder v27.2.26</title>
+<title>Mauritius Mass Finder v27.3.0</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#6f2c2c">
 <meta name="description" content="Find a Catholic Mass quickly anywhere in Mauritius.">
@@ -55,10 +55,10 @@
     <section id="modeHero" aria-live="polite"></section>
     <div class="dataNotice" id="dataNotice" role="status" aria-live="polite" hidden></div>
     <div class="headLine" id="resultsHead">
-      <div><div class="contextLabel" id="contextLabel"></div><div class="resultCount" id="resultCount"></div></div>
+      <div><div class="contextLabel" id="contextLabel"></div><div class="resultCount" id="resultCount" aria-live="polite" aria-atomic="true"></div></div>
       <button class="btn filterBtn" id="openFilters" type="button" aria-haspopup="dialog" aria-controls="filterSheet" aria-expanded="false">⚙ <span data-t="filters">Filters</span><span class="filterCount" id="filterCount" hidden></span></button>
     </div>
-    <section id="results" class="resultsGrid" aria-live="polite"></section>
+    <section id="results" class="resultsGrid"></section>
     <section id="morePanel" class="morePanel" hidden></section>
   </main>
   <footer class="appFooter" id="appFooter" aria-label="App help footer"></footer>
@@ -74,9 +74,8 @@
     <div class="filterGroup"><div class="filterLabel" id="regionLabel">Region</div><div class="tagRow" id="regionTags"></div></div>
     <div class="filterGroup"><div class="filterLabel" id="typeLabel">Type</div><div class="tagRow" id="typeTags"></div></div>
   </div>
-  <div class="sheetFooter" aria-hidden="true"></div>
+  <div class="sheetFooter"><button class="btn primary" id="applyFilters" type="button">Show results</button></div>
 </section>
-<button class="btn primary filterGlobalApply" id="applyFilters" type="button">Show results</button>
 <section class="sheet detailSheet" id="detailSheet" aria-label="Mass details" aria-modal="true" aria-hidden="true" role="dialog" tabindex="-1">
   <div class="grab"></div>
   <div class="sheetHead"><h2 id="detailTitle" data-t="detailTitle">Mass details</h2><button class="btn icon" id="closeDetail" type="button" aria-label="Close details">×</button></div>
