@@ -1,8 +1,8 @@
 {
-  "version": "27.3.4",
-  "release_name": "Phase 3 Modularisation",
+  "version": "27.3.5",
+  "release_name": "Phase 4 Occurrence Semantics",
   "build": "2026-06-24",
   "data_version": "2026-06-21",
-  "cache_version": "mmf-v27-3-4",
-  "notes": "app.js split into 9 ES modules (constants, translations, state, utils, geo, search, render, sheets, sw-bridge). No behaviour changes."
+  "cache_version": "mmf-v27-3-5",
+  "notes": "Results grid now shows 'Already under way' section below upcoming Masses. In-progress Masses (within grace period) are visually separated rather than deprioritised."
 }
