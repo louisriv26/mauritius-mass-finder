@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repair — Mauritius Mass Finder</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:480px;margin:40px auto;padding:20px;color:#241914}
+  h1{color:#6f2c2c}
+  .btn{display:inline-block;padding:12px 24px;background:#6f2c2c;color:#fff;border:none;border-radius:12px;font-size:1rem;cursor:pointer;margin-top:16px}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  #status{margin-top:16px;padding:12px;border-radius:8px;background:#f5e7df}
+  .ok{background:#eef8ee!important}
+  .err{background:#fff0f0!important}
+</style>
+</head>
+<body>
+<h1>Repair App Cache</h1>
+<p>This page clears the Mauritius Mass Finder beta service worker and cache so the app can reload cleanly.</p>
+<p><strong>Your saved churches and language preference will be kept.</strong></p>
+<p><em>Direct URL: <code>https://louisriv26.github.io/mauritius-mass-finder-beta/recover.html</code></em></p>
+<button class="btn" id="repairBtn" onclick="repair()">Repair this app</button>
+<div id="status" hidden></div>
+<script>
+async function repair(){
+  const btn=document.getElementById('repairBtn');
+  const status=document.getElementById('status');
+  btn.disabled=true;
+  status.hidden=false;
+  status.textContent='Unregistering service worker…';
+  try{
+    if('serviceWorker' in navigator){
+      const regs=await navigator.serviceWorker.getRegistrations();
+      // Only unregister the beta-scoped registration — do not touch production
+      const betaReg=regs.find(r=>r.scope.includes('/mauritius-mass-finder-beta/'));
+      if(betaReg)await betaReg.unregister();
+    }
+    status.textContent='Clearing app cache…';
+    if('caches' in window){
+      const keys=await caches.keys();
+      // Only delete beta channel caches (mmf-beta-*) — do not touch production caches
+      await Promise.all(keys.filter(k=>k.startsWith('mmf-beta-')).map(k=>caches.delete(k)));
+    }
+    // Verify controller released — an old controlling SW may still hold this client briefly
+    const stillControlled=navigator.serviceWorker&&navigator.serviceWorker.controller;
+    status.className='ok';
+    if(stillControlled){
+      status.innerHTML='Cache cleared. <strong>To complete the repair:</strong> close this app completely, then reopen it from your Home Screen or browser.';
+    }else{
+      status.textContent='Done. Opening repaired app…';
+      // ?recovered= is explicitly bypassed by the service worker fetch handler
+      setTimeout(()=>location.replace('./?recovered='+Date.now()),800);
+    }
+  }catch(e){
+    status.className='err';
+    status.textContent='Error: '+e.message+'. Close the app completely and reopen it from your browser, or try again.';
+    btn.disabled=false;
+  }
+}
+</script>
+</body>
+</html>
