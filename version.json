@@ -1,9 +1,9 @@
 {
-  "version": "27.3.11",
-  "release_name": "Quick Day Filter Fix",
-  "build": "2026-06-25",
-  "build_id": "27.3.11-1",
-  "data_version": "2026-06-21",
-  "cache_version": "mmf-v27-3-11",
-  "notes": "Fix P0: toggleQuickDay('today'/'tomorrow') passed raw string to applyFilter instead of '__today'/'__tomorrow', causing dayMode='calendar' and effectiveDay to return literal 'today'/'tomorrow' — matching no corpus rows. Also fixes chip label showing English in FR mode."
+  "version": "27.5.0",
+  "release_name": "Promote beta to production: Feast Awareness, Schedule Reconciliation, Feast Document Viewer",
+  "build": "2026-08-17",
+  "build_id": "27.5.0-1",
+  "data_version": "2026-08-17",
+  "cache_version": "mmf-v27-5-0",
+  "notes": "Promotes mauritius-mass-finder-beta v27.5.0 to production (last promotion was v27.3.10; the v27.3.11 quick-day-filter hotfix was already present in the beta lineage, so nothing is lost). Key changes vs last production: (1) Feast Day Awareness - the app warns when a feast day may change Mass times, with a 14-day horizon. (2) Full schedule reconciliation against the diocese's restructured site (all 410 source URLs remapped after their /paroisses-messes/ redesign; 10 time corrections; 13 additions; 1 Mass/non-Mass day-swap fix at Sainte-Therese-d'Avila; 9 rows removed on explicit editorial decision because no diocese page lists them, archived and restorable). (3) Feast Document Viewer (new, v27.5.0) - a read-only, verbatim facsimile of the diocese's own feast-day schedule table, reached only via a contextual link on an affected card/hero/results-strip, never a standing menu item; no document has been ingested yet for the two known 2026 feasts (Toussaint, Noel), so the viewer has nothing to show until a real PDF is processed. Corpus now carries 413 rows (was 410)."
 }
