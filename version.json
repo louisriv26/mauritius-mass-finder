@@ -1,9 +1,9 @@
 {
-  "version": "27.5.0",
-  "release_name": "Promote beta to production: Feast Awareness, Schedule Reconciliation, Feast Document Viewer",
-  "build": "2026-08-17",
-  "build_id": "27.5.0-1",
-  "data_version": "2026-08-17",
-  "cache_version": "mmf-v27-5-0",
-  "notes": "Promotes mauritius-mass-finder-beta v27.5.0 to production (last promotion was v27.3.10; the v27.3.11 quick-day-filter hotfix was already present in the beta lineage, so nothing is lost). Key changes vs last production: (1) Feast Day Awareness - the app warns when a feast day may change Mass times, with a 14-day horizon. (2) Full schedule reconciliation against the diocese's restructured site (all 410 source URLs remapped after their /paroisses-messes/ redesign; 10 time corrections; 13 additions; 1 Mass/non-Mass day-swap fix at Sainte-Therese-d'Avila; 9 rows removed on explicit editorial decision because no diocese page lists them, archived and restorable). (3) Feast Document Viewer (new, v27.5.0) - a read-only, verbatim facsimile of the diocese's own feast-day schedule table, reached only via a contextual link on an affected card/hero/results-strip, never a standing menu item; no document has been ingested yet for the two known 2026 feasts (Toussaint, Noel), so the viewer has nothing to show until a real PDF is processed. Corpus now carries 413 rows (was 410)."
+  "version": "27.5.5",
+  "release_name": "Promote beta to production: new Mass, coordinate audit, expanded help",
+  "build": "2026-08-18",
+  "build_id": "27.5.5-1",
+  "data_version": "2026-08-18",
+  "cache_version": "mmf-v27-5-5",
+  "notes": "Promotes mauritius-mass-finder-beta v27.5.5 to production, covering everything since v27.5.0. (1) One missing Mass added: Notre-Dame-des-Victoires, Midlands - Saturday 17:30, third Saturday of the month only, a chapel of the Sainte-Therese-d'Avila parish that has its own diocese page but had no row here. Corpus is now 414 rows / 117 sites. (2) Full coordinate audit of all 117 churches against OpenStreetMap, in two passes, correcting ten. Two were genuinely wrong: Sacre-Coeur Beau-Bassin was pinned on the Montmartre chapel in Rose-Hill - a different church already in this corpus - and moved 1.54 km onto its own building; Notre-Dame-de-la-Delivrande was at Cap Malheureux, 20 km from its stated town, and moved 18.6 km to the village of Notre Dame that the diocese page names. Eight more were moved from the village centre onto the mapped church building. Churches shown with an exact location rise from 17 to 25 of 117. No schedule data was changed by the audit. (3) Help expanded from 8 sections to 10 in both languages, explaining feast-day warnings and the diocese document link, Masses that only happen on certain dates (22 rows carry such a rule), and what 'Batch reconciled' and 'Lower confidence - check source' actually mean. (4) A row with no coordinate no longer claims 'Approx. location'; it says nothing instead."
 }
