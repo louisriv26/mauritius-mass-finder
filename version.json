@@ -1,9 +1,9 @@
 {
-  "version": "27.5.5",
-  "release_name": "Promote beta to production: new Mass, coordinate audit, expanded help",
-  "build": "2026-08-18",
-  "build_id": "27.5.5-1",
-  "data_version": "2026-08-18",
-  "cache_version": "mmf-v27-5-5",
-  "notes": "Promotes mauritius-mass-finder-beta v27.5.5 to production, covering everything since v27.5.0. (1) One missing Mass added: Notre-Dame-des-Victoires, Midlands - Saturday 17:30, third Saturday of the month only, a chapel of the Sainte-Therese-d'Avila parish that has its own diocese page but had no row here. Corpus is now 414 rows / 117 sites. (2) Full coordinate audit of all 117 churches against OpenStreetMap, in two passes, correcting ten. Two were genuinely wrong: Sacre-Coeur Beau-Bassin was pinned on the Montmartre chapel in Rose-Hill - a different church already in this corpus - and moved 1.54 km onto its own building; Notre-Dame-de-la-Delivrande was at Cap Malheureux, 20 km from its stated town, and moved 18.6 km to the village of Notre Dame that the diocese page names. Eight more were moved from the village centre onto the mapped church building. Churches shown with an exact location rise from 17 to 25 of 117. No schedule data was changed by the audit. (3) Help expanded from 8 sections to 10 in both languages, explaining feast-day warnings and the diocese document link, Masses that only happen on certain dates (22 rows carry such a rule), and what 'Batch reconciled' and 'Lower confidence - check source' actually mean. (4) A row with no coordinate no longer claims 'Approx. location'; it says nothing instead."
+  "version": "27.6.1",
+  "release_name": "Promote beta to production: diocese-confirmed corrections",
+  "build": "2026-08-19",
+  "build_id": "27.6.1-1",
+  "data_version": "2026-08-19",
+  "cache_version": "mmf-v27-6-1",
+  "notes": "Promotes mauritius-mass-finder-beta v27.6.1. Every schedule change here was confirmed directly by the Diocese of Port-Louis (Virginie Julien, Public Relations Officer) on 2026-08-19, and re-read from the corrected diocese pages afterwards. (1) Two times corrected where the diocese own two pages had disagreed: L Eau Vive Chebel Sunday 08h00 -> 07h30, and Saint-Benoit Tamarin Sunday English Mass (1st Sunday) 18h00 -> 17h30. The third case queried, Notre-Dame-de-la-Mer Albion, was settled at 18h00, which we already held. (2) One Mass restored that we had wrongly removed: the Monday 19h00 Messe dans les quartiers at Plaine-Magnien. It was dropped on 2026-08-17 because no diocese page listed it; the diocese confirmed it takes place and reinstated it. Restored with its original site id, so anyone who had saved that church gets it back. The other six Masses queried were confirmed as genuinely ceased. (3) Two churches added whose diocese pages had an empty schedule: Beatitudes, Bati, Grand-Gaube (Sunday 08h00) and Notre-Dame-du-Grand-Pouvoir, Cap-Malheureux (Wednesday 18h00, second Wednesday only). (4) That second one now carries an explicit red warning in both languages, because the diocese states it is not celebrated regularly and asks people to confirm with the parish before travelling - previously that caution was stored but never shown. Corpus 414 -> 417 rows, 117 -> 120 sites."
 }
