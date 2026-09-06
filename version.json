@@ -1,9 +1,9 @@
 {
-  "version": "27.6.15",
-  "release_name": "Updates that actually reload; location that refreshes",
+  "version": "27.6.16",
+  "release_name": "A monthly exposition was being shown every week",
   "build": "2026-09-05",
-  "build_id": "27.6.15-1",
+  "build_id": "27.6.16-1",
   "data_version": "2026-09-05",
-  "cache_version": "mmf-v27-6-15",
-  "notes": "Promotes beta v27.6.14 and v27.6.15. (1) THE RELOAD AFTER AN UPDATE WAS A NO-OP: location.replace() to a URL identical to the current one does not reload, so even a completely successful update left the user on the old page with the update banner still showing - the exact symptom updating is meant to clear. It now reloads when there is no query string to drop. (2) A controllerchange arriving after the 6-second deadline used to do nothing, because forceUpdate had already returned; the reload is now driven by the event itself, 6s only shows a slow-update hint, there is a real 60s give-up that leaves the app able to retry, a rejected update is reported rather than swallowed, and repeated taps cannot arm duplicate listeners. (3) SKIP_WAITING is now held until the new worker reports installed - posting it to a worker that is still installing could be dropped, leaving it waiting forever with no controllerchange. (4) Geolocation: the watchdog retires the request id so a late callback can no longer drag the user back into Near me, and tapping Near me or Retry re-acquires the position instead of reusing the first fix of the session, which meant someone travelling across the island was still sorted by where they started. No data change: 426 rows, 121 sites."
+  "cache_version": "mmf-v27-6-16",
+  "notes": "Promotes beta v27.6.16. Found by testing the occurrence-rule engine for the first time: 28 ruled rows checked across 1,249 dates against an independently written expectation. 26 were correct; 2 were wrong on 40 of 52 Fridays. Saint-Paul (Phoenix) and Saint-Patrice (Plaine Magnien) both carried First Friday only; Exposition du Saint-Sacrement in special_rule with occurrence_rule empty. The app deliberately ignores a special_rule mentioning exposition or adoration so a description is never mistaken for a schedule rule, but that string was both at once, so the rule was discarded and every Friday counted - a monthly exposition was advertised all year. The ordinal now sits in occurrence_rule, as it does on all 26 working rows. Both rows are Non-Mass, so they appear only when other celebrations are included; no Mass time was affected. 426 rows, 121 sites."
 }
