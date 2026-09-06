@@ -1,9 +1,9 @@
 {
-  "version": "27.6.17",
-  "release_name": "Searching one church returned sixteen",
+  "version": "27.6.19",
+  "release_name": "A shared Mass link opened the wrong Mass",
   "build": "2026-09-05",
-  "build_id": "27.6.17-1",
+  "build_id": "27.6.19-1",
   "data_version": "2026-09-05",
-  "cache_version": "mmf-v27-6-17",
-  "notes": "Promotes beta v27.6.17. Place matching is substring based and search_text carried the day name, so a query token that is a substring of a French day name matched. Searching Notre-Dame-de-la-Mer, a real church at Albion, returned 20 rows across 16 different churches - every Notre-Dame on the island - because mer is inside mercredi, and only their Wednesday Masses came back. day_of_week is now excluded from search_text; the day is filtered structurally and parsed out of the query separately, so it was never needed there. That search now returns 5 rows at the one church, prefix search still works, and 18 further search cases pass with zero violations. No Mass time changed: 426 rows, 121 sites."
+  "cache_version": "mmf-v27-6-19",
+  "notes": "Promotes beta v27.6.18 and v27.6.19. Sharing a Mass produces a link ending in #row=<id>. Opened cold that worked, but tapping one while the app was ALREADY open did nothing: navigating to a different fragment does not reload the page, and the restore handler was bound to popstate alone, which fires for back and forward but not for a new fragment. Whichever Mass was already on screen stayed there and the shared one never opened, so somebody sent a link to a Tuesday 07:00 Mass could sit looking at a Sunday 06:30 Mass at a different church with no sign the link had failed. The handler is now bound to hashchange as well and reconciles the open sheet with the hash, so a link carrying no Mass closes a stale one. Also verified with no defect found: saved churches persist, survive a reload and render correctly, and no site_uid changed in any release, so no saved church was lost. No data change: 426 rows, 121 sites."
 }
