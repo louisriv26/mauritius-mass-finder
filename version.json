@@ -1,9 +1,9 @@
 {
-  "version": "27.6.16",
-  "release_name": "A monthly exposition was being shown every week",
+  "version": "27.6.17",
+  "release_name": "Searching one church returned sixteen",
   "build": "2026-09-05",
-  "build_id": "27.6.16-1",
+  "build_id": "27.6.17-1",
   "data_version": "2026-09-05",
-  "cache_version": "mmf-v27-6-16",
-  "notes": "Promotes beta v27.6.16. Found by testing the occurrence-rule engine for the first time: 28 ruled rows checked across 1,249 dates against an independently written expectation. 26 were correct; 2 were wrong on 40 of 52 Fridays. Saint-Paul (Phoenix) and Saint-Patrice (Plaine Magnien) both carried First Friday only; Exposition du Saint-Sacrement in special_rule with occurrence_rule empty. The app deliberately ignores a special_rule mentioning exposition or adoration so a description is never mistaken for a schedule rule, but that string was both at once, so the rule was discarded and every Friday counted - a monthly exposition was advertised all year. The ordinal now sits in occurrence_rule, as it does on all 26 working rows. Both rows are Non-Mass, so they appear only when other celebrations are included; no Mass time was affected. 426 rows, 121 sites."
+  "cache_version": "mmf-v27-6-17",
+  "notes": "Promotes beta v27.6.17. Place matching is substring based and search_text carried the day name, so a query token that is a substring of a French day name matched. Searching Notre-Dame-de-la-Mer, a real church at Albion, returned 20 rows across 16 different churches - every Notre-Dame on the island - because mer is inside mercredi, and only their Wednesday Masses came back. day_of_week is now excluded from search_text; the day is filtered structurally and parsed out of the query separately, so it was never needed there. That search now returns 5 rows at the one church, prefix search still works, and 18 further search cases pass with zero violations. No Mass time changed: 426 rows, 121 sites."
 }
